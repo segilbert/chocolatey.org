@@ -1,0 +1,3 @@
+[submodule "nugetgallery"]
+	path = nugetgallery
+	url = git://github.com/NuGet/NuGetGallery.git
