@@ -133,6 +133,11 @@ namespace NuGetGallery
             routes.MapRoute(
                 "v1" + RouteName.PushPackageApi,
                 "v1/PackageFiles/{apiKey}/nupkg",
+                MVC.Api.CreatePackagePost()); 
+            
+            routes.MapRoute(
+                "v1Legacy" + RouteName.PushPackageApi,
+                "PackageFiles/{apiKey}/nupkg",
                 MVC.Api.CreatePackagePost());
 
             routes.MapRoute(
