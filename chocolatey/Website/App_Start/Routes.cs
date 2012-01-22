@@ -188,6 +188,11 @@ namespace NuGetGallery
                 "api/v2/",
                 typeof(V2Feed));
 
+            routes.MapServiceRoute(
+               "rss" + RouteName.V2ApiFeed,
+               "api/v2/rss/",
+               typeof(RSSFeed));
+
             // Redirected Legacy Routes
 
             routes.Redirect(
