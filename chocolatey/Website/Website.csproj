@@ -303,9 +303,6 @@
       <Link>Migrations\201201031925005_AddPasswordHash.Designer.cs</Link>
       <DependentUpon>201201031925005_AddPasswordHash.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Migrations\Settings.cs">
-      <Link>Migrations\Settings.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\PackagesController.generated.cs">
       <Link>PackagesController.generated.cs</Link>
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -890,6 +887,7 @@
     <Compile Include="App_Start\IConfiguration.cs" />
     <Compile Include="App_Start\PackageStoreType.cs" />
     <Compile Include="App_Start\Routes.cs" />
+    <Compile Include="Migrations\Settings.cs" />
     <Compile Include="MvcOverrides\CustomMvcHandler.cs" />
     <Compile Include="MvcOverrides\CustomMvcRouteHandler.cs" />
     <Compile Include="MvcOverrides\HttpContextDecorator.cs" />

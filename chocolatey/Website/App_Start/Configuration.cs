@@ -145,6 +145,16 @@ namespace NuGetGallery
             }
         }
 
+        public bool SmtpEnableSsl
+        {
+            get
+            {
+                return ReadConfiguration<bool>(
+                 "SmtpEnableSsl",
+                 (value) => bool.Parse(value ?? bool.TrueString));
+            }
+        }
+
         private static string GetSiteRoot()
         {
             // TODO: Make this less horrid. 
