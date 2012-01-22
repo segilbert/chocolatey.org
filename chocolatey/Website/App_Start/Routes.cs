@@ -149,6 +149,11 @@ namespace NuGetGallery
                 "v1" + RouteName.PublishPackageApi,
                 "v1/PublishedPackages/Publish",
                 MVC.Api.PublishPackage());
+  
+            routes.MapRoute(
+                "v1Legacy" + RouteName.PublishPackageApi,
+                "PublishedPackages/Publish",
+                MVC.Api.PublishPackage());
 
             routes.MapServiceRoute(
                "v1legacy" + RouteName.V1ApiFeed,
