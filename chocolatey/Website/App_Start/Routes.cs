@@ -124,6 +124,13 @@ namespace NuGetGallery
                 constraints: new { httpMethod = new HttpMethodConstraint("GET") });
 
             routes.MapRoute(
+                "site" + RouteName.DownloadPackage,
+                "packages/{id}/{version}/DownloadPackage",
+                MVC.Api.GetPackage(),
+                defaults: new { version = UrlParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint("GET") });
+
+            routes.MapRoute(
                 "v1" + RouteName.PushPackageApi,
                 "v1/PackageFiles/{apiKey}/nupkg",
                 MVC.Api.CreatePackagePost());
@@ -137,6 +144,11 @@ namespace NuGetGallery
                 "v1" + RouteName.PublishPackageApi,
                 "v1/PublishedPackages/Publish",
                 MVC.Api.PublishPackage());
+
+            routes.MapServiceRoute(
+               "v1legacy" + RouteName.V1ApiFeed,
+               "api/feeds",
+               typeof(V1Feed));
 
             routes.MapServiceRoute(
                 "v1" + RouteName.V1ApiFeed,
@@ -231,7 +243,14 @@ namespace NuGetGallery
                    "LegacyDownloadRoute",
                    "v1/Package/Download/{id}/{version}",
                    MVC.Api.GetPackage().AddRouteValue("version", UrlParameter.Optional)),
-               permanent: true).To(downloadRoute);
+               permanent: true).To(downloadRoute); 
+            
+            //routes.Redirect(
+            //   r => r.MapRoute(
+            //       "RecentLegacyDownloadRoute",
+            //       "packages/{id}/{version}/DownloadPackage",
+            //       MVC.Api.GetPackage().AddRouteValue("version", UrlParameter.Optional)),
+            //   permanent: true).To(downloadRoute);
         }
     }
 }

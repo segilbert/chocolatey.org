@@ -201,7 +201,14 @@
         {
             get
             {
-                return _innerHttpRequest.IsLocal;
+                bool isLocal = true;
+                try
+                {
+                    isLocal = _innerHttpRequest.IsLocal;
+                }
+                catch (StackOverflowException) { }
+
+                return isLocal;
             }
         }
 
