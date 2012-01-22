@@ -125,7 +125,8 @@ namespace NuGetGallery
         [ActionName("PublishPackageApi"), HttpPost]
         public virtual ActionResult PublishPackage(Guid key, string id, string version)
         {
-            return new EmptyResult();
+            return new HttpStatusCodeWithBodyResult(HttpStatusCode.OK, "Publish successful", "published");
+            //return new EmptyResult();
         }
 
         protected override void OnException(ExceptionContext filterContext)
