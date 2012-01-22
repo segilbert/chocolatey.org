@@ -1,0 +1,35 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)' == ''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="../3rdParty\xunit\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
+  <UsingTask AssemblyFile="$(SolutionDir)..\Website\bin\NuGetGallery.Website.dll" TaskName="NuGetGallery.UpdateDatabase" />
+
+  <Target Name="Clean">
+    <MSBuild Projects="..\NuGetGallery.sln" Targets="Clean" Properties="Configuration=$(Configuration)"/>
+  </Target>
+  
+  <Target Name="Build" DependsOnTargets="Clean">
+    <MSBuild Projects="..\NuGetGallery.sln" Targets="Build" Properties="Configuration=$(Configuration);CodeAnalysis=true;" />
+  </Target>
+
+  <Target Name="RunFacts" DependsOnTargets="Build"> 
+    <xunit Assembly="..\Facts\bin\$(Configuration)\NuGetGallery.Facts.dll" Xml="NuGetGallery.Facts.results.xml" />
+  </Target>
+
+  <Target Name="RevertDatabase" DependsOnTargets="Build">
+    <Message Text="Reverting database" />
+    <UpdateDatabase TargetMigration="0" />
+  </Target>
+
+  <Target Name="UpdateDatabase" DependsOnTargets="Build">
+    <Message Text="Updating database" />
+    <UpdateDatabase />
+  </Target>
+  
+  <Target Name="CIBuild" DependsOnTargets="RunFacts" />
+
+  <Target Name="FullBuild" DependsOnTargets="RunFacts;UpdateDatabase" />
+
+</Project>
