@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Tab = "Home";
+}
+<section class="featured">
+    <div>
+        <h1>Let's get Chocolatey!</h1>
+        <p>Chocolatey NuGet is a Machine Package Manager, somewhat like apt-get, but built with windows in mind.</p>
+        <h2>Easy Install!</h2>
+        <p style="vertical-align:bottom;font-size:18px">
+        To install chocolatey now, open a powershell prompt 
+            <span style="color:red;">(execution policy needs to be unrestricted - Set-ExecutionPolicy Unrestricted)</span>, 
+            paste the text from the box below and press enter 
+        </p>
+    </div>
+    <img src="@Url.Content("~/content/images/hero.png")" alt="Chocolatey install of mSysGit (cinst msysgit)" />
+</section>
+<div class="nuget-badge">
+    <p>
+        <code>PS:\&gt; iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall'))</code>
+    </p>
+</div>
+<section class="release">
+     <h2>Chocolatey v0.9.8.13 Released!</h2> 
+     <p>
+        The latest version of chocolatey includes tons of new features and several new commands. 
+        <em>chocolatey update (cup)</em> to get the latest version of chocolatey - <a href="https://github.com/chocolatey/chocolatey/wiki/ReleaseNotes">More information?</a>
+     </p>
+</section>
+<section class="info">
+    <h3>About</h3>
+    <p>When you use chocolatey to install applicatons/tools, nearly all you need to do is type one line and let it finish the rest!</p>
+
+    <h3>Important Notice</h3>
+    <p>YYou can develop your own packages and share them via the Chocolatey Gallery. Read the documentation for more details on 
+    <a title="Creating and submitting a package" href="https://github.com/chocolatey/chocolatey/wiki/CreatePackages">how to 
+    create and publish a package</a>. If you don&rsquo;t plan on submitting a package, there&rsquo;s no need to register.</p>
+</section>

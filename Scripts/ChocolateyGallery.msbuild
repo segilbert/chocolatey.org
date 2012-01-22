@@ -1,0 +1,54 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)' == ''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Platform>Any CPU</Platform>
+    <BuildDirectory>bin\</BuildDirectory>
+    <BuildPath>$(MSBuildProjectDirectory)\..\$(BuildDirectory)</BuildPath>
+    <MigrationsFile>$(BuildPath)\_PublishedWebsites\WebSite\bin\NuGetGallery.Website.dll</MigrationsFile>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(BuildPath)\..\nugetgallery\3rdParty\xunit\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
+  <UsingTask AssemblyFile="$(BuildPath)\_PublishedWebsites\WebSite\bin\NuGetGallery.Website.dll" TaskName="NuGetGallery.UpdateDatabase" />
+
+  <Target Name="Clean">
+    <MSBuild Projects="..\ChocolateyGallery.sln" Targets="Clean" Properties="Configuration=$(Configuration);Platform=$(Platform);OutDir=$(BuildPath)"/>
+    <RemoveDir Directories="$(BuildPath)" ContinueOnError="true" />
+  </Target>
+  
+  <Target Name="Build" DependsOnTargets="Clean">
+    <MSBuild Projects="..\ChocolateyGallery.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);OutDir=$(BuildPath);CodeAnalysis=true;" />
+  </Target>
+
+  <Target Name="RunFacts" DependsOnTargets="Build"> 
+    <xunit Assembly="$(BuildPath)\NuGetGallery.Facts.dll" Xml="NuGetGallery.Facts.results.xml" />
+  </Target>
+  
+  <Target Name="CleanBuildOutput">   
+    <ItemGroup>
+      <FilesToRemove 
+        Exclude="$(BuildPath)\_PublishedWebSites\**\*" 
+        Include="$(BuildPath)\**\*"
+      />
+    </ItemGroup>
+    <Delete Files="@(FilesToRemove)" />
+    <Message Text="build path is $(BuildPath)" />
+  </Target>
+
+  <Target Name="RevertDatabase" DependsOnTargets="Build">
+    <Message Text="Reverting database" />
+    <UpdateDatabase TargetMigration="0" />
+  </Target>
+
+  <Target Name="UpdateDatabase" DependsOnTargets="Build">
+    <Message Text="Updating database" />
+    <UpdateDatabase />
+  </Target>
+
+  <Target Name="CIBuild" DependsOnTargets="RunFacts;CleanBuildOutput" />
+
+  <Target Name="FullBuild" DependsOnTargets="RunFacts;CleanBuildOutput;UpdateDatabase;" />
+
+</Project>

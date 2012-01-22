@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "Layout.cshtml";
+}
+
+
+<div id="sideColumn">
+    @RenderSection("SideColumn")
+</div>
+<div id="mainColumn">
+    @RenderBody()
+</div>
+
+<div class="clear-fix"><!--Sad Panda--></div>
+
+@section BottomScripts {
+    @RenderSection("BottomScripts", required: false)
+}

@@ -1,0 +1,11 @@
+_ReSharper*
+bin
+obj
+*.user
+*.suo
+App_Data
+*.results.xml
+/packages
+_AzurePackage
+*.sln.docstates
+*.bak

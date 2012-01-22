@@ -1,0 +1,1201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1DACF781-5CD0-4123-8BAC-CD385D864BE5}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NuGetGallery</RootNamespace>
+    <AssemblyName>NuGetGallery.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <CodeAnalysisRuleSet>CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <RunCodeAnalysis Condition=" '$(CodeAnalysis)' == 'true' ">true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AnglicanGeek.MarkdownMailer, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AnglicanGeek.MarkdownMailer.1.2\lib\net40\AnglicanGeek.MarkdownMailer.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK, Version=1.3.18.0, Culture=neutral, PublicKeyToken=cd2d24cd2bace800, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AWSSDK.1.3.18.0\lib\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicData.EFCodeFirstProvider">
+      <HintPath>..\..\packages\DynamicData.EFCodeFirstProvider.0.2\lib\net40\DynamicData.EFCodeFirstProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Contrib.Mvc">
+      <HintPath>..\..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Migrations">
+      <HintPath>..\..\packages\EntityFramework.Migrations.0.7.0.0\lib\net40\EntityFramework.Migrations.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\..\packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AnglicanGeek.WindowsAzure.ServiceRuntime.1.6\lib\net35-full\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Storage.1.6\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcHaack.Ajax, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MvcHaack.Ajax.1.1\lib\net40\MvcHaack.Ajax.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcMiniProfiler">
+      <HintPath>..\..\packages\MiniProfiler.1.7\lib\MvcMiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core">
+      <HintPath>..\..\packages\NuGet.Core.1.6.1\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ODataNullPropagationVisitor">
+      <HintPath>..\..\packages\ODataNullPropagationVisitor.0.5.4237.2641\lib\net40\ODataNullPropagationVisitor.dll</HintPath>
+    </Reference>
+    <Reference Include="QueryInterceptor">
+      <HintPath>..\..\packages\QueryInterceptor.0.1.4237.2400\lib\net40\QueryInterceptor.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteMagic, Version=1.1.3.0, Culture=neutral, PublicKeyToken=84b59be021aa4cee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\RouteMagic.1.1.3\lib\net40\RouteMagic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebBackgrounder, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebBackgrounder.0.1\lib\net40\WebBackgrounder.dll</HintPath>
+    </Reference>
+    <Reference Include="WebBackgrounder.EntityFramework, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebBackgrounder.EntityFramework.0.1\lib\net40\WebBackgrounder.EntityFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\AuthenticationModule.cs">
+      <Link>App_Start\AuthenticationModule.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ApiController.generated.cs">
+      <Link>ApiController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\BackgroundTasksSetup.cs">
+      <Link>App_Start\BackgroundTasksSetup.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\V1FeedPackage.cs">
+      <Link>DataServices\V1FeedPackage.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\V1Feed.svc.cs">
+      <Link>DataServices\V1Feed.svc.cs</Link>
+      <DependentUpon>V1Feed.svc</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\FeedContext.cs">
+      <Link>DataServices\FeedContext.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\FeedServiceBase.cs">
+      <Link>DataServices\FeedServiceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\PackageExtensions.cs">
+      <Link>DataServices\PackageExtensions.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\V2Feed.svc.cs">
+      <Link>DataServices\V2Feed.svc.cs</Link>
+      <DependentUpon>V2Feed.svc</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\V2FeedPackage.cs">
+      <Link>DataServices\V2FeedPackage.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\GallerySetting.cs">
+      <Link>Entities\GallerySetting.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\HelpersController.generated.cs">
+      <Link>HelpersController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HintAttribute.cs">
+      <Link>Infrastructure\HintAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpHeaderValueProvider.cs">
+      <Link>Infrastructure\HttpHeaderValueProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpHeaderValueProviderFactory.cs">
+      <Link>Infrastructure\HttpHeaderValueProviderFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpStatusCodeWithBodyResult.cs">
+      <Link>Infrastructure\HttpStatusCodeWithBodyResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Jobs\WorkItemCleanupJob.cs">
+      <Link>Infrastructure\Jobs\WorkItemCleanupJob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Jobs\UpdateStatisticsJob.cs">
+      <Link>Infrastructure\Jobs\UpdateStatisticsJob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\JsonApiController.generated.cs">
+      <Link>JsonApiController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110060711357_Initial.cs">
+      <Link>Migrations\201110060711357_Initial.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110060711357_Initial.Designer.cs">
+      <Link>Migrations\201110060711357_Initial.Designer.cs</Link>
+      <DependentUpon>201110060711357_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110102157002_PrereleaseChanges.cs">
+      <Link>Migrations\201110102157002_PrereleaseChanges.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110102157002_PrereleaseChanges.Designer.cs">
+      <Link>Migrations\201110102157002_PrereleaseChanges.Designer.cs</Link>
+      <DependentUpon>201110102157002_PrereleaseChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110180052097_GallerySettings.cs">
+      <Link>Migrations\201110180052097_GallerySettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110180052097_GallerySettings.Designer.cs">
+      <Link>Migrations\201110180052097_GallerySettings.Designer.cs</Link>
+      <DependentUpon>201110180052097_GallerySettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110230649210_PackageOwnerRequests.cs">
+      <Link>Migrations\201110230649210_PackageOwnerRequests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201110230649210_PackageOwnerRequests.Designer.cs">
+      <Link>Migrations\201110230649210_PackageOwnerRequests.Designer.cs</Link>
+      <DependentUpon>201110230649210_PackageOwnerRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022024584_PackageDependencyVersionSpec.cs">
+      <Link>Migrations\201111022024584_PackageDependencyVersionSpec.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022024584_PackageDependencyVersionSpec.Designer.cs">
+      <Link>Migrations\201111022024584_PackageDependencyVersionSpec.Designer.cs</Link>
+      <DependentUpon>201111022024584_PackageDependencyVersionSpec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022051010_PackageReleaseNotes.cs">
+      <Link>Migrations\201111022051010_PackageReleaseNotes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111022051010_PackageReleaseNotes.Designer.cs">
+      <Link>Migrations\201111022051010_PackageReleaseNotes.Designer.cs</Link>
+      <DependentUpon>201111022051010_PackageReleaseNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080239544_ListPackagesIndexes.cs">
+      <Link>Migrations\201111080239544_ListPackagesIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080239544_ListPackagesIndexes.Designer.cs">
+      <Link>Migrations\201111080239544_ListPackagesIndexes.Designer.cs</Link>
+      <DependentUpon>201111080239544_ListPackagesIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080816426_DisplayPackageIndexes.cs">
+      <Link>Migrations\201111080816426_DisplayPackageIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111080816426_DisplayPackageIndexes.Designer.cs">
+      <Link>Migrations\201111080816426_DisplayPackageIndexes.Designer.cs</Link>
+      <DependentUpon>201111080816426_DisplayPackageIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111081908453_MyPackagesIndexes.cs">
+      <Link>Migrations\201111081908453_MyPackagesIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111081908453_MyPackagesIndexes.Designer.cs">
+      <Link>Migrations\201111081908453_MyPackagesIndexes.Designer.cs</Link>
+      <DependentUpon>201111081908453_MyPackagesIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111150729167_AddSmtpPassword.cs">
+      <Link>Migrations\201111150729167_AddSmtpPassword.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111150729167_AddSmtpPassword.Designer.cs">
+      <Link>Migrations\201111150729167_AddSmtpPassword.Designer.cs</Link>
+      <DependentUpon>201111150729167_AddSmtpPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111222338036_GalleryOwnerEmailSettings.cs">
+      <Link>Migrations\201111222338036_GalleryOwnerEmailSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201111222338036_GalleryOwnerEmailSettings.Designer.cs">
+      <Link>Migrations\201111222338036_GalleryOwnerEmailSettings.Designer.cs</Link>
+      <DependentUpon>201111222338036_GalleryOwnerEmailSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201201031925005_AddPasswordHash.cs">
+      <Link>Migrations\201201031925005_AddPasswordHash.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201201031925005_AddPasswordHash.Designer.cs">
+      <Link>Migrations\201201031925005_AddPasswordHash.Designer.cs</Link>
+      <DependentUpon>201201031925005_AddPasswordHash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\Settings.cs">
+      <Link>Migrations\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackagesController.generated.cs">
+      <Link>PackagesController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobClientWrapper.cs">
+      <Link>Services\CloudBlobClientWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobContainerWrapper.cs">
+      <Link>Services\CloudBlobContainerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobFileStorageService.cs">
+      <Link>Services\CloudBlobFileStorageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobWrapper.cs">
+      <Link>Services\CloudBlobWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\FileSystemFileStorageService.cs">
+      <Link>Services\FileSystemFileStorageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlob.cs">
+      <Link>Services\ICloudBlob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlobClient.cs">
+      <Link>Services\ICloudBlobClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlobContainer.cs">
+      <Link>Services\ICloudBlobContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IFileStorageService.cs">
+      <Link>Services\IFileStorageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IUploadFileService.cs">
+      <Link>Services\IUploadFileService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\PackageFileService.cs">
+      <Link>Services\PackageFileService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequireRemoteHttpsAttribute.cs">
+      <Link>RequireRemoteHttpsAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\TestableStorageClientException.cs">
+      <Link>Services\TestableStorageClientException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\UploadFileService.cs">
+      <Link>Services\UploadFileService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\EditProfileViewModel.cs">
+      <Link>ViewModels\EditProfileViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\EmailConfirmationModel.cs">
+      <Link>ViewModels\EmailConfirmationModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PackageOwnerConfirmationModel.cs">
+      <Link>ViewModels\PackageOwnerConfirmationModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ResendConfirmationEmailViewModel.cs">
+      <Link>ViewModels\ResendConfirmationEmailViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\MiniProfiler.cs">
+      <Link>App_Start\MiniProfiler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\NinjectMVC3.cs">
+      <Link>App_Start\NinjectMVC3.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\AuthenticationController.generated.cs">
+      <Link>AuthenticationController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\BuildTasks\UpdateDatabase.cs">
+      <Link>BuildTasks\UpdateDatabase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\ApiController.cs">
+      <Link>Controllers\ApiController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\JsonApiController.cs">
+      <Link>Controllers\JsonApiController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\PagesController.cs">
+      <Link>Controllers\PagesController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\PackagesController.cs">
+      <Link>Controllers\PackagesController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\AuthenticationController.cs">
+      <Link>Controllers\AuthenticationController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\UsersController.cs">
+      <Link>Controllers\UsersController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Content\GridViewPager.ascx.cs">
+      <Link>DynamicData\Content\GridViewPager.ascx.cs</Link>
+      <DependentUpon>GridViewPager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Content\GridViewPager.ascx.designer.cs">
+      <Link>DynamicData\Content\GridViewPager.ascx.designer.cs</Link>
+      <DependentUpon>GridViewPager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Default.aspx.cs">
+      <Link>DynamicData\Default.aspx.cs</Link>
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Default.aspx.designer.cs">
+      <Link>DynamicData\Default.aspx.designer.cs</Link>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default.ascx.cs">
+      <Link>DynamicData\EntityTemplates\Default.ascx.cs</Link>
+      <DependentUpon>Default.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default.ascx.designer.cs">
+      <Link>DynamicData\EntityTemplates\Default.ascx.designer.cs</Link>
+      <DependentUpon>Default.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default_Edit.ascx.cs">
+      <Link>DynamicData\EntityTemplates\Default_Edit.ascx.cs</Link>
+      <DependentUpon>Default_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default_Edit.ascx.designer.cs">
+      <Link>DynamicData\EntityTemplates\Default_Edit.ascx.designer.cs</Link>
+      <DependentUpon>Default_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default_Insert.ascx.cs">
+      <Link>DynamicData\EntityTemplates\Default_Insert.ascx.cs</Link>
+      <DependentUpon>Default_Insert.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default_Insert.ascx.designer.cs">
+      <Link>DynamicData\EntityTemplates\Default_Insert.ascx.designer.cs</Link>
+      <DependentUpon>Default_Insert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Boolean.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Boolean.ascx.cs</Link>
+      <DependentUpon>Boolean.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Boolean.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Boolean.ascx.designer.cs</Link>
+      <DependentUpon>Boolean.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Boolean_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Boolean_Edit.ascx.cs</Link>
+      <DependentUpon>Boolean_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Boolean_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Boolean_Edit.ascx.designer.cs</Link>
+      <DependentUpon>Boolean_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Children.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Children.ascx.cs</Link>
+      <DependentUpon>Children.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Children.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Children.ascx.designer.cs</Link>
+      <DependentUpon>Children.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Children_Insert.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Children_Insert.ascx.cs</Link>
+      <DependentUpon>Children_Insert.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Children_Insert.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Children_Insert.ascx.designer.cs</Link>
+      <DependentUpon>Children_Insert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\DateTime.ascx.cs">
+      <Link>DynamicData\FieldTemplates\DateTime.ascx.cs</Link>
+      <DependentUpon>DateTime.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\DateTime.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\DateTime.ascx.designer.cs</Link>
+      <DependentUpon>DateTime.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\DateTime_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\DateTime_Edit.ascx.cs</Link>
+      <DependentUpon>DateTime_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\DateTime_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\DateTime_Edit.ascx.designer.cs</Link>
+      <DependentUpon>DateTime_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Decimal_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Decimal_Edit.ascx.cs</Link>
+      <DependentUpon>Decimal_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Decimal_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Decimal_Edit.ascx.designer.cs</Link>
+      <DependentUpon>Decimal_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\EmailAddress.ascx.cs">
+      <Link>DynamicData\FieldTemplates\EmailAddress.ascx.cs</Link>
+      <DependentUpon>EmailAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\EmailAddress.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\EmailAddress.ascx.designer.cs</Link>
+      <DependentUpon>EmailAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Enumeration.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Enumeration.ascx.cs</Link>
+      <DependentUpon>Enumeration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Enumeration.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Enumeration.ascx.designer.cs</Link>
+      <DependentUpon>Enumeration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Enumeration_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Enumeration_Edit.ascx.cs</Link>
+      <DependentUpon>Enumeration_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Enumeration_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Enumeration_Edit.ascx.designer.cs</Link>
+      <DependentUpon>Enumeration_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ForeignKey.ascx.cs">
+      <Link>DynamicData\FieldTemplates\ForeignKey.ascx.cs</Link>
+      <DependentUpon>ForeignKey.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ForeignKey.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\ForeignKey.ascx.designer.cs</Link>
+      <DependentUpon>ForeignKey.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ForeignKey_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\ForeignKey_Edit.ascx.cs</Link>
+      <DependentUpon>ForeignKey_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ForeignKey_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\ForeignKey_Edit.ascx.designer.cs</Link>
+      <DependentUpon>ForeignKey_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Integer_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Integer_Edit.ascx.cs</Link>
+      <DependentUpon>Integer_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Integer_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Integer_Edit.ascx.designer.cs</Link>
+      <DependentUpon>Integer_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ManyToMany.ascx.cs">
+      <Link>DynamicData\FieldTemplates\ManyToMany.ascx.cs</Link>
+      <DependentUpon>ManyToMany.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ManyToMany.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\ManyToMany.ascx.designer.cs</Link>
+      <DependentUpon>ManyToMany.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ManyToMany_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\ManyToMany_Edit.ascx.cs</Link>
+      <DependentUpon>ManyToMany_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ManyToMany_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\ManyToMany_Edit.ascx.designer.cs</Link>
+      <DependentUpon>ManyToMany_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\MultilineText_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\MultilineText_Edit.ascx.cs</Link>
+      <DependentUpon>MultilineText_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\MultilineText_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\MultilineText_Edit.ascx.designer.cs</Link>
+      <DependentUpon>MultilineText_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Text.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Text.ascx.cs</Link>
+      <DependentUpon>Text.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Text.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Text.ascx.designer.cs</Link>
+      <DependentUpon>Text.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Text_Edit.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Text_Edit.ascx.cs</Link>
+      <DependentUpon>Text_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Text_Edit.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Text_Edit.ascx.designer.cs</Link>
+      <DependentUpon>Text_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Url.ascx.cs">
+      <Link>DynamicData\FieldTemplates\Url.ascx.cs</Link>
+      <DependentUpon>Url.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Url.ascx.designer.cs">
+      <Link>DynamicData\FieldTemplates\Url.ascx.designer.cs</Link>
+      <DependentUpon>Url.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Filters\Boolean.ascx.cs">
+      <Link>DynamicData\Filters\Boolean.ascx.cs</Link>
+      <DependentUpon>Boolean.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Filters\Boolean.ascx.designer.cs">
+      <Link>DynamicData\Filters\Boolean.ascx.designer.cs</Link>
+      <DependentUpon>Boolean.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Filters\Enumeration.ascx.cs">
+      <Link>DynamicData\Filters\Enumeration.ascx.cs</Link>
+      <DependentUpon>Enumeration.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Filters\Enumeration.ascx.designer.cs">
+      <Link>DynamicData\Filters\Enumeration.ascx.designer.cs</Link>
+      <DependentUpon>Enumeration.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Filters\ForeignKey.ascx.cs">
+      <Link>DynamicData\Filters\ForeignKey.ascx.cs</Link>
+      <DependentUpon>ForeignKey.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Filters\ForeignKey.ascx.designer.cs">
+      <Link>DynamicData\Filters\ForeignKey.ascx.designer.cs</Link>
+      <DependentUpon>ForeignKey.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Details.aspx.cs">
+      <Link>DynamicData\PageTemplates\Details.aspx.cs</Link>
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Details.aspx.designer.cs">
+      <Link>DynamicData\PageTemplates\Details.aspx.designer.cs</Link>
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Edit.aspx.cs">
+      <Link>DynamicData\PageTemplates\Edit.aspx.cs</Link>
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Edit.aspx.designer.cs">
+      <Link>DynamicData\PageTemplates\Edit.aspx.designer.cs</Link>
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Insert.aspx.cs">
+      <Link>DynamicData\PageTemplates\Insert.aspx.cs</Link>
+      <DependentUpon>Insert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Insert.aspx.designer.cs">
+      <Link>DynamicData\PageTemplates\Insert.aspx.designer.cs</Link>
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\List.aspx.cs">
+      <Link>DynamicData\PageTemplates\List.aspx.cs</Link>
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\List.aspx.designer.cs">
+      <Link>DynamicData\PageTemplates\List.aspx.designer.cs</Link>
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Registration.cs">
+      <Link>DynamicData\Registration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Site.master.cs">
+      <Link>DynamicData\Site.master.cs</Link>
+      <DependentUpon>Site.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DynamicData\Site.master.designer.cs">
+      <Link>DynamicData\Site.master.designer.cs</Link>
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageOwnerRequest.cs">
+      <Link>Entities\PackageOwnerRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageStatistics.cs">
+      <Link>Entities\PackageStatistics.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\Role.cs">
+      <Link>Entities\Role.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\CookieTempDataProvider.cs">
+      <Link>Infrastructure\CookieTempDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\NuGetControllerFactory.cs">
+      <Link>Infrastructure\NuGetControllerFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PagesController.generated.cs">
+      <Link>PagesController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\Extensions.cs">
+      <Link>Services\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IMessageService.cs">
+      <Link>Services\IMessageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\MessageService.cs">
+      <Link>Services\MessageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\SharedController.generated.cs">
+      <Link>SharedController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\T4MVC.cs">
+      <Link>T4MVC.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\UsersController.generated.cs">
+      <Link>UsersController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PasswordChangeViewModel.cs">
+      <Link>ViewModels\PasswordChangeViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ContactOwnersViewModel.cs">
+      <Link>ViewModels\ContactOwnersViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PasswordResetViewModel.cs">
+      <Link>ViewModels\PasswordResetViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ManagePackageOwnersViewModel.cs">
+      <Link>ViewModels\ManagePackageOwnersViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\DependencyViewModel.cs">
+      <Link>ViewModels\DependencyViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\IPackageVersionModel.cs">
+      <Link>ViewModels\IPackageVersionModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\IPageableEnumerable.cs">
+      <Link>ViewModels\IPageableEnumerable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\FileSystemService.cs">
+      <Link>Services\FileSystemService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IFileSystemService.cs">
+      <Link>Services\IFileSystemService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IPackageService.cs">
+      <Link>Services\IPackageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\PackageService.cs">
+      <Link>Services\PackageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageDependency.cs">
+      <Link>Entities\PackageDependency.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Constants.cs">
+      <Link>Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\Container.cs">
+      <Link>App_Start\Container.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\CryptographyService.cs">
+      <Link>Services\CryptographyService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\EntityException.cs">
+      <Link>Entities\EntityException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\FormsAuthenticationService.cs">
+      <Link>Services\FormsAuthenticationService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ICryptographyService.cs">
+      <Link>Services\ICryptographyService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\IEntity.cs">
+      <Link>Entities\IEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IFormsAuthenticationService.cs">
+      <Link>Services\IFormsAuthenticationService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IPackageFileService.cs">
+      <Link>Services\IPackageFileService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\IEntityRepository.cs">
+      <Link>Entities\IEntityRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IUserService.cs">
+      <Link>Services\IUserService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\EmailMessage.cs">
+      <Link>Entities\EmailMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\EntitiesContext.cs">
+      <Link>Entities\EntitiesContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageRegistration.cs">
+      <Link>Entities\PackageRegistration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageAuthor.cs">
+      <Link>Entities\PackageAuthor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\Package.cs">
+      <Link>Entities\Package.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\EntityRepository.cs">
+      <Link>Entities\EntityRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\DisplayPackageRequest.cs">
+      <Link>RequestModels\DisplayPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Strings.Designer.cs">
+      <Link>Strings.Designer.cs</Link>
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\User.cs">
+      <Link>Entities\User.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\UserService.cs">
+      <Link>Services\UserService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\SignInRequest.cs">
+      <Link>RequestModels\SignInRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\RegisterRequest.cs">
+      <Link>RequestModels\RegisterRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\SubmitPackageRequest.cs">
+      <Link>RequestModels\SubmitPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RouteNames.cs">
+      <Link>RouteNames.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\App_Start\VersionRouteConstraint.cs">
+      <Link>App_Start\VersionRouteConstraint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\DisplayPackageViewModel.cs">
+      <Link>ViewModels\DisplayPackageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\IPreviousNextPager.cs">
+      <Link>ViewModels\IPreviousNextPager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ManagePackagesViewModel.cs">
+      <Link>ViewModels\ManagePackagesViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ListPackageItemViewModel.cs">
+      <Link>ViewModels\ListPackageItemViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PackageListViewModel.cs">
+      <Link>ViewModels\PackageListViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PackageViewModel.cs">
+      <Link>ViewModels\PackageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PasswordResetRequestViewModel.cs">
+      <Link>ViewModels\PasswordResetRequestViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\PreviousNextPagerViewModel.cs">
+      <Link>ViewModels\PreviousNextPagerViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\ReportAbuseViewModel.cs">
+      <Link>ViewModels\ReportAbuseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\VerifyPackageViewModel.cs">
+      <Link>ViewModels\VerifyPackageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\UserProfileModel.cs">
+      <Link>ViewModels\UserProfileModel.cs</Link>
+    </Compile>
+    <Compile Include="App_Start\BootStrapper.cs" />
+    <Compile Include="App_Start\Configuration.cs" />
+    <Compile Include="App_Start\ContainerBindings.cs" />
+    <Compile Include="App_Start\IConfiguration.cs" />
+    <Compile Include="App_Start\PackageStoreType.cs" />
+    <Compile Include="App_Start\Routes.cs" />
+    <Compile Include="MvcOverrides\CustomMvcHandler.cs" />
+    <Compile Include="MvcOverrides\CustomMvcRouteHandler.cs" />
+    <Compile Include="MvcOverrides\HttpContextDecorator.cs" />
+    <Compile Include="MvcOverrides\HttpContextProxy.cs" />
+    <Compile Include="MvcOverrides\HttpRequestDecorator.cs" />
+    <Compile Include="MvcOverrides\HttpRequestProxy.cs" />
+    <Compile Include="Services\AmazonS3ClientWrapper.cs" />
+    <Compile Include="Services\AmazonS3FileStorageService.cs" />
+    <Compile Include="Services\IAmazonS3Client.cs" />
+    <Compile Include="UrlExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\nugetgallery\Website\DataServices\V1Feed.svc">
+      <Link>DataServices\V1Feed.svc</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DataServices\V2Feed.svc">
+      <Link>DataServices\V2Feed.svc</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\GridViewPager.ascx">
+      <Link>DynamicData\Content\GridViewPager.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\Back.gif">
+      <Link>DynamicData\Content\Images\Back.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\header_back.gif">
+      <Link>DynamicData\Content\Images\header_back.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\PgFirst.gif">
+      <Link>DynamicData\Content\Images\PgFirst.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\PgLast.gif">
+      <Link>DynamicData\Content\Images\PgLast.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\PgNext.gif">
+      <Link>DynamicData\Content\Images\PgNext.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\PgPrev.gif">
+      <Link>DynamicData\Content\Images\PgPrev.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Content\Images\plus.gif">
+      <Link>DynamicData\Content\Images\plus.gif</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Default.aspx">
+      <Link>DynamicData\Default.aspx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default.ascx">
+      <Link>DynamicData\EntityTemplates\Default.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default_Edit.ascx">
+      <Link>DynamicData\EntityTemplates\Default_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\EntityTemplates\Default_Insert.ascx">
+      <Link>DynamicData\EntityTemplates\Default_Insert.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Boolean.ascx">
+      <Link>DynamicData\FieldTemplates\Boolean.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Boolean_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\Boolean_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Children.ascx">
+      <Link>DynamicData\FieldTemplates\Children.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Children_Insert.ascx">
+      <Link>DynamicData\FieldTemplates\Children_Insert.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\DateTime.ascx">
+      <Link>DynamicData\FieldTemplates\DateTime.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\DateTime_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\DateTime_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Decimal_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\Decimal_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\EmailAddress.ascx">
+      <Link>DynamicData\FieldTemplates\EmailAddress.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Enumeration.ascx">
+      <Link>DynamicData\FieldTemplates\Enumeration.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Enumeration_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\Enumeration_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ForeignKey.ascx">
+      <Link>DynamicData\FieldTemplates\ForeignKey.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ForeignKey_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\ForeignKey_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Integer_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\Integer_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ManyToMany.ascx">
+      <Link>DynamicData\FieldTemplates\ManyToMany.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\ManyToMany_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\ManyToMany_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\MultilineText_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\MultilineText_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Text.ascx">
+      <Link>DynamicData\FieldTemplates\Text.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Text_Edit.ascx">
+      <Link>DynamicData\FieldTemplates\Text_Edit.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\FieldTemplates\Url.ascx">
+      <Link>DynamicData\FieldTemplates\Url.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Filters\Boolean.ascx">
+      <Link>DynamicData\Filters\Boolean.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Filters\Enumeration.ascx">
+      <Link>DynamicData\Filters\Enumeration.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Filters\ForeignKey.ascx">
+      <Link>DynamicData\Filters\ForeignKey.ascx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Details.aspx">
+      <Link>DynamicData\PageTemplates\Details.aspx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Edit.aspx">
+      <Link>DynamicData\PageTemplates\Edit.aspx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\Insert.aspx">
+      <Link>DynamicData\PageTemplates\Insert.aspx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\PageTemplates\List.aspx">
+      <Link>DynamicData\PageTemplates\List.aspx</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Site.css">
+      <Link>DynamicData\Site.css</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\Errors\Error.html">
+      <Link>Errors\Error.html</Link>
+    </Content>
+    <Content Include="Content\Images\changePassword.png" />
+    <Content Include="Content\Images\contribGraphic.png" />
+    <Content Include="Content\Images\download.png" />
+    <Content Include="Content\Images\editIcon.png" />
+    <Content Include="Content\Images\editProfile.png" />
+    <Content Include="Content\Images\errorPage.png" />
+    <Content Include="Content\Images\greenArrow.png" />
+    <Content Include="Content\Images\headerbackground.png" />
+    <Content Include="Content\Images\hero.png" />
+    <Content Include="Content\Images\herowithlogo.png" />
+    <Content Include="Content\Images\inputBackground.png" />
+    <Content Include="Content\Images\invalidBG.png" />
+    <Content Include="Content\Images\managePackages.png" />
+    <Content Include="Content\Images\mine.png" />
+    <Content Include="Content\Images\navbackground.png" />
+    <Content Include="Content\Images\newAccountGraphic.png" />
+    <Content Include="Content\Images\nugetlogo.png" />
+    <Content Include="Content\Images\nugetLogoFooter.png" />
+    <Content Include="Content\Images\packageDefaultIcon-50x50.png" />
+    <Content Include="Content\Images\packageDefaultIcon.png" />
+    <Content Include="Content\Images\packageOwnerActionIcons.png" />
+    <Content Include="Content\Images\packagesDefaultIcon.png" />
+    <Content Include="Content\Images\recommended.png" />
+    <Content Include="Content\Images\recommendedSmall.png" />
+    <Content Include="Content\Images\required.png" />
+    <Content Include="Content\Images\searchButton.png" />
+    <Content Include="Content\Images\sendMessageGraphic.png" />
+    <Content Include="Content\Images\trash.png" />
+    <Content Include="Content\Images\uploadPackage.png" />
+    <Content Include="Content\Images\userGraphic.png" />
+    <Content Include="Content\Images\userIcon.png" />
+    <Content Include="Content\Images\userIconWhite.png" />
+    <Content Include="Content\Images\xmark.png" />
+    <Content Include="Content\Images\YourPackage.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="..\..\nugetgallery\Website\Errors\404.cshtml">
+      <Link>Errors\404.cshtml</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\Errors\ErrorLayout.cshtml">
+      <Link>Errors\ErrorLayout.cshtml</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\Errors\_PageStart.cshtml">
+      <Link>Errors\_PageStart.cshtml</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\api\Web.config">
+      <Link>api\Web.config</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\_app_offline.htm">
+      <Link>_app_offline.htm</Link>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.2.js" />
+    <Content Include="Scripts\jquery-1.6.2.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-latest.js" />
+    <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Views\Pages\Home.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\Packages\DisplayPackage.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="packages.config" />
+    <Content Include="App_Code\ViewHelpers.cshtml" />
+    <Content Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
+    <Content Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
+    <Content Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
+    <Content Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
+    <Content Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
+    <Content Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\nugetgallery\Website\Strings.resx">
+      <Link>Strings.resx</Link>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\web.config">
+      <Link>DynamicData\web.config</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DynamicData\Site.master">
+      <Link>DynamicData\Site.master</Link>
+    </Content>
+    <None Include="..\..\nugetgallery\Website\T4MVC.tt">
+      <Link>T4MVC.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="..\..\nugetgallery\Website\T4MVC.tt.settings.t4">
+      <Link>T4MVC.tt.settings.t4</Link>
+    </None>
+    <Content Include="Views\Authentication\LogOn.cshtml" />
+    <Content Include="Views\Packages\ConfirmOwner.cshtml" />
+    <Content Include="Views\Packages\ContactOwners.cshtml" />
+    <Content Include="Views\Packages\Delete.cshtml" />
+    <Content Include="Views\Packages\_ListPackage.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Packages\Download.cshtml" />
+    <Content Include="Views\Packages\Edit.cshtml" />
+    <Content Include="Views\Packages\ListPackages.cshtml" />
+    <Content Include="Views\Packages\ManagePackageOwners.cshtml" />
+    <Content Include="Views\Packages\ReportAbuse.cshtml" />
+    <Content Include="Views\Packages\UploadPackage.cshtml" />
+    <Content Include="Views\Packages\VerifyPackage.cshtml" />
+    <Content Include="Views\Pages\Privacy.cshtml" />
+    <Content Include="Views\Pages\Terms.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\TwoColumnLayout.cshtml" />
+    <Content Include="Views\Shared\UserDisplay.cshtml" />
+    <Content Include="Views\Users\Account.cshtml" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
+    <Content Include="Views\Users\Confirm.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\ForgotPassword.cshtml" />
+    <Content Include="Views\Users\Packages.cshtml" />
+    <Content Include="Views\Users\PasswordChanged.cshtml" />
+    <Content Include="Views\Users\PasswordSent.cshtml" />
+    <Content Include="Views\Users\Profiles.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\ResendConfirmation.cshtml" />
+    <Content Include="Views\Users\ResetPassword.cshtml" />
+    <Content Include="Views\Users\Thanks.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55880</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55881/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
+  <Import Project="$(SolutionDir)\chocolatey\3rdParty\RazorGenerator\RazorGenerator.targets" />
+</Project>

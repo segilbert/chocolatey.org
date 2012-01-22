@@ -1,0 +1,33 @@
+﻿@model RegisterRequest
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/TwoColumnLayout.cshtml";
+}
+
+@section SideColumn {
+    <p>With your account, you’ll be able to achieve all kinds of fame and glory by submitting your own packages.</p>
+    <p>Already have an account? <a href="@Url.LogOn()">Log On.</a></p>
+}
+
+
+<h1>Create A New Account</h1>
+
+@using (Html.BeginForm()) {
+    <fieldset class="form">
+        <legend>Register Form</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+              
+        @Html.EditorForModel()
+
+        <img src="@Url.Content("~/content/images/required.png")" alt="Blue border on left means required." />
+
+        <input type="submit" value="Register" title="Register" />
+    </fieldset>
+}
+
+@section BottomScripts {
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+}

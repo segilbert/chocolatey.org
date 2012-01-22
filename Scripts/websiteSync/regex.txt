@@ -1,0 +1,14 @@
+FIND: 
+\<(?<TAG>Compile|Content|None)\sInclude\=\"(?<KEEP>[-_\w\d\.\\]+)\"\s?\>
+
+REPLACE
+<${TAG} Include="..\..\nugetgallery\Website\${KEEP}">
+  <Link>${KEEP}</Link>
+
+FIND:
+\<(?<TAG>Compile|Content|None)\sInclude\=\"(?<KEEP>[-_\w\d\.\\]+)\"\s?\/\>
+
+REPLACE: 
+<${TAG} Include="..\..\nugetgallery\Website\${KEEP}">
+  <Link>${KEEP}</Link>
+</${TAG}>
