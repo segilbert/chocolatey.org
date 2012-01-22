@@ -387,9 +387,6 @@
     <Compile Include="..\..\nugetgallery\Website\Controllers\PackagesController.cs">
       <Link>Controllers\PackagesController.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Controllers\AuthenticationController.cs">
-      <Link>Controllers\AuthenticationController.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Controllers\UsersController.cs">
       <Link>Controllers\UsersController.cs</Link>
     </Compile>
@@ -888,6 +885,7 @@
     <Compile Include="App_Start\IConfiguration.cs" />
     <Compile Include="App_Start\PackageStoreType.cs" />
     <Compile Include="App_Start\Routes.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="DataServices\RSSFeed.svc.cs">
       <DependentUpon>RSSFeed.svc</DependentUpon>
     </Compile>
