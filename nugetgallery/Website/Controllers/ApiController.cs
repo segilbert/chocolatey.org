@@ -101,7 +101,7 @@ namespace NuGetGallery
             }
 
             packageSvc.CreatePackage(packageToPush, user);
-            return new HttpStatusCodeResult(201);
+            return new HttpStatusCodeWithBodyResult(HttpStatusCode.Created,"Push successful","push");
         }
 
         [ActionName("DeletePackageApi"), HttpDelete]
