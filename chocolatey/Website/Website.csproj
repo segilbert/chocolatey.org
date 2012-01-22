@@ -1077,9 +1077,6 @@
     <Content Include="..\..\nugetgallery\Website\api\Web.config">
       <Link>api\Web.config</Link>
     </Content>
-    <Content Include="..\..\nugetgallery\Website\_app_offline.htm">
-      <Link>_app_offline.htm</Link>
-    </Content>
     <Content Include="DataServices\RSSFeed.svc" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
@@ -1099,6 +1096,7 @@
     <Content Include="Web.config" />
     <Content Include="packages.config" />
     <Content Include="App_Code\ViewHelpers.cshtml" />
+    <Content Include="_app_offline.htm" />
     <Content Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <Content Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
     <Content Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
