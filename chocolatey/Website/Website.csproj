@@ -886,9 +886,7 @@
     <Compile Include="App_Start\PackageStoreType.cs" />
     <Compile Include="App_Start\Routes.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="DataServices\RSSFeed.svc.cs">
-      <DependentUpon>RSSFeed.svc</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Migrations\Settings.cs" />
     <Compile Include="MvcOverrides\CustomMvcHandler.cs" />
     <Compile Include="MvcOverrides\CustomMvcRouteHandler.cs" />
@@ -899,6 +897,7 @@
     <Compile Include="Services\AmazonS3ClientWrapper.cs" />
     <Compile Include="Services\AmazonS3FileStorageService.cs" />
     <Compile Include="Services\IAmazonS3Client.cs" />
+    <Compile Include="Services\RssActionResult.cs" />
     <Compile Include="UrlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1075,7 +1074,6 @@
     <Content Include="..\..\nugetgallery\Website\api\Web.config">
       <Link>api\Web.config</Link>
     </Content>
-    <Content Include="DataServices\RSSFeed.svc" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
@@ -1091,7 +1089,9 @@
     </Content>
     <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\Packages\DisplayPackage.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="App_Code\ViewHelpers.cshtml" />
     <Content Include="_app_offline.htm" />

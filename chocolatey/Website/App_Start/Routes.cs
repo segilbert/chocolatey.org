@@ -14,6 +14,12 @@ namespace NuGetGallery
                 "",
                 MVC.Pages.Home());
 
+            routes.MapRoute(
+             "rss feed",
+             "feed.rss",
+             new {controller = "RSS", Action = "feed.rss"});
+
+
             routes.Add(new JsonRoute("json/{controller}"));
 
             routes.MapRoute(
@@ -197,11 +203,6 @@ namespace NuGetGallery
                 RouteName.V2ApiFeed,
                 "api/v2/",
                 typeof(V2Feed));
-
-            routes.MapServiceRoute(
-               "rss" + RouteName.V2ApiFeed,
-               "api/v2/rss/",
-               typeof(RSSFeed));
 
             // Redirected Legacy Routes
 
