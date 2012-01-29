@@ -6,6 +6,11 @@
 
 
 <hgroup class="search">
+    <div style="float:right">
+        <a href="http://feeds.feedburner.com/chocolatey" title="Subscribe to package updates" rel="alternate" type="application/rss+xml"><img src="http://www.feedburner.com/fb/images/pub/feed-icon32x32.png" alt="RSS" style="border:0"/>&nbsp;<span>Subscribe to updates</span></a>
+        <br />
+        <form style="border:0px solid #ccc;padding:1px;text-align:center;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=chocolatey', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><input type="hidden" value="chocolatey" name="uri"/><input type="hidden" name="loc" value="en_US"/>Or subcribe by <input type="submit" value="email" /></form>
+    </div>
     @if (!String.IsNullOrEmpty(Model.SearchTerm)) {
     <h1>Search for "@Model.SearchTerm" returned @Model.TotalCount packages</h1>
     }
@@ -16,6 +21,7 @@
     {
     <h2>Displaying results @Model.FirstResultIndex - @Model.LastResultIndex.</h2>
     }
+    
 </hgroup>
 
 @using (Html.BeginForm()) {
