@@ -37,10 +37,10 @@
                     urlBuilder.Port = 80;
                 }
 
-                if (RequestContext.HttpContext.Request.IsLocal)
-                {
-                    urlBuilder.Port = RequestContext.HttpContext.Request.Url.Port;
-                }
+                //if (RequestContext.HttpContext.Request.IsLocal)
+                //{
+                //    urlBuilder.Port = RequestContext.HttpContext.Request.Url.Port;
+                //}
 
                 return urlBuilder.Uri;
             }
