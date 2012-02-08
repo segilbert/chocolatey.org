@@ -16,41 +16,44 @@ namespace NuGetGallery
     {
         private readonly IEntityRepository<Package> packageRepo;
         private readonly IConfiguration configuration;
+        private readonly ISearchService searchService;
 
         public FeedServiceBase()
             : this(DependencyResolver.Current.GetService<IEntityRepository<Package>>(),
-                   DependencyResolver.Current.GetService<IConfiguration>())
+                   DependencyResolver.Current.GetService<IConfiguration>(),
+                   DependencyResolver.Current.GetService<ISearchService>())
         {
-            
+
         }
 
-        protected FeedServiceBase(IEntityRepository<Package> packageRepo, IConfiguration configuration)
+        protected FeedServiceBase(IEntityRepository<Package> packageRepo, IConfiguration configuration, ISearchService searchService)
         {
             // TODO: See if there is a way to do proper DI with data services
             this.packageRepo = packageRepo;
             this.configuration = configuration;
+            this.searchService = searchService;
         }
 
         protected IEntityRepository<Package> PackageRepo
         {
-            get
-            {
-                return packageRepo;
-            }
+            get { return packageRepo; }
         }
 
         protected IConfiguration Configuration
         {
-            get
-            {
-                return configuration;
-            }
+            get { return configuration; }
+        }
+
+        protected ISearchService SearchService
+        {
+            get { return searchService; }
         }
 
         // This method is called only once to initialize service-wide policies.
         public static void InitializeService(DataServiceConfiguration config)
         {
             config.SetServiceOperationAccessRule("Search", ServiceOperationRights.AllRead);
+            config.SetServiceOperationAccessRule("FindPackagesById", ServiceOperationRights.AllRead);
             config.SetEntitySetAccessRule("Packages", EntitySetRights.AllRead);
             config.SetEntitySetPageSize("Packages", 100);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V2;

@@ -259,14 +259,7 @@ namespace NuGetGallery
                    "LegacyDownloadRoute",
                    "v1/Package/Download/{id}/{version}",
                    MVC.Api.GetPackage().AddRouteValue("version", UrlParameter.Optional)),
-               permanent: true).To(downloadRoute); 
-            
-            //routes.Redirect(
-            //   r => r.MapRoute(
-            //       "RecentLegacyDownloadRoute",
-            //       "packages/{id}/{version}/DownloadPackage",
-            //       MVC.Api.GetPackage().AddRouteValue("version", UrlParameter.Optional)),
-            //   permanent: true).To(downloadRoute);
+               permanent: true).To(downloadRoute);
         }
     }
 }

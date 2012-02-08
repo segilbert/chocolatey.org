@@ -64,6 +64,9 @@
     <Reference Include="EntityFramework.Migrations">
       <HintPath>..\..\packages\EntityFramework.Migrations.0.7.0.0\lib\net40\EntityFramework.Migrations.dll</HintPath>
     </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\packages\Lucene.Net.2.9.2.2\lib\net40\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -102,8 +105,14 @@
     <Reference Include="ODataNullPropagationVisitor">
       <HintPath>..\..\packages\ODataNullPropagationVisitor.0.5.4237.2641\lib\net40\ODataNullPropagationVisitor.dll</HintPath>
     </Reference>
+    <Reference Include="PoliteCaptcha, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PoliteCaptcha.0.3.0.0\lib\net40\PoliteCaptcha.dll</HintPath>
+    </Reference>
     <Reference Include="QueryInterceptor">
       <HintPath>..\..\packages\QueryInterceptor.0.1.4237.2400\lib\net40\QueryInterceptor.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha, Version=1.0.5.0, Culture=neutral, PublicKeyToken=9afc4d65b28c38c2, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\recaptcha.1.0.5.0\lib\.NetFramework 4.0\Recaptcha.dll</HintPath>
     </Reference>
     <Reference Include="RouteMagic, Version=1.1.3.0, Culture=neutral, PublicKeyToken=84b59be021aa4cee, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -209,6 +218,24 @@
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpStatusCodeWithBodyResult.cs">
       <Link>Infrastructure\HttpStatusCodeWithBodyResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneFileSystem.cs" >
+      <Link>Infrastructure\Lucene\LuceneFileSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneCommon.cs" >
+      <Link>Infrastructure\Lucene\LuceneCommon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneIndexingJob.cs" >
+      <Link>Infrastructure\Lucene\LuceneIndexingJob.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneIndexingService.cs" >
+      <Link>Infrastructure\Lucene\LuceneIndexingService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\PackageIndexEntity.cs" >
+      <Link>Infrastructure\Lucene\PackageIndexEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneSearchService.cs" >
+      <Link>Infrastructure\Lucene\LuceneSearchService.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\Jobs\WorkItemCleanupJob.cs">
       <Link>Infrastructure\Jobs\WorkItemCleanupJob.cs</Link>
@@ -334,6 +361,15 @@
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\IFileStorageService.cs">
       <Link>Services\IFileStorageService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IIndexingService.cs" >
+      <Link>Services\IIndexingService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\ISearchService.cs" >
+      <Link>Services\ISearchService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\PackageSearchResults.cs" >
+      <Link>Services\PackageSearchResults.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\IUploadFileService.cs">
       <Link>Services\IUploadFileService.cs</Link>

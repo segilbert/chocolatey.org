@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Data.Services;
 using System.Linq;
 using System.ServiceModel.Web;
@@ -17,8 +18,8 @@ namespace NuGetGallery
 
         }
 
-        public V2Feed(IEntityRepository<Package> repo, IConfiguration configuration)
-            : base(repo, configuration)
+        public V2Feed(IEntityRepository<Package> repo, IConfiguration configuration, ISearchService searchSvc)
+            : base(repo, configuration, searchSvc)
         {
 
         }
@@ -45,11 +46,18 @@ namespace NuGetGallery
                            .ToV2FeedPackageQuery(Configuration.SiteRoot);
         }
 
+        [WebGet]
+        public IQueryable<V2FeedPackage> FindPackagesById(string id)
+        {
+            return PackageRepo.GetAll().Include(p => p.PackageRegistration)
+                                       .Where(p => p.PackageRegistration.Id.Equals(id, StringComparison.OrdinalIgnoreCase) && p.Listed)
+                                       .ToV2FeedPackageQuery(Configuration.SiteRoot);
+        }
+
         public override Uri GetReadStreamUri(
            object entity,
            DataServiceOperationContext operationContext)
         {
-
             var package = (V2FeedPackage)entity;
             var httpContext = new HttpContextWrapper(HttpContext.Current);
             var urlHelper = new UrlHelper(new RequestContext(httpContext, new RouteData()));
