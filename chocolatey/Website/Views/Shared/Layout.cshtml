@@ -4,11 +4,10 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Chocolatey Gallery</title> 
+        <title>Chocolatey Gallery @ViewBag.TitleAppend</title> 
         <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" />
-       @* <link href="@Url.Content("~/Content/nuget.css")" rel="stylesheet" type="text/css" />*@
         <link href="@Url.Content("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
-        <script src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")"></script>
         @MvcMiniProfiler.MiniProfiler.RenderIncludes()
         @Microsoft.Web.Helpers.Analytics.GetGoogleHtml("UA-2743882-12")
     </head>
@@ -68,13 +67,27 @@
                 </ul>
                 <div class="license">
                     <p>
+                        <a href="https://twitter.com/chocolateynuget" class="twitter-follow-button" data-show-count="true" data-width="250px" data-lang="en">Follow @@chocolateynuget</a>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="chocolatey" data-lang="en">Tweet</a> 
+                        <script type="text/javascript">
+                            !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");
+                        </script>
+                        <br />
                         &copy; @DateTime.UtcNow.Year FerventCoder Software.
                     </p>
-                    @ViewHelpers.ReleaseTag()
+                    @ViewHelpers.ReleaseTag() 
+
                 </div>
             </footer>
         </div>
-        <script src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
         @RenderSection("BottomScripts", required: false)
+        <script type="text/javascript">var switchTo5x = true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+        <script type="text/javascript">
+            var options = { "publisher": "ur-c2abd95b-4a79-34b2-10fc-622d72ca1889", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0 }, "chicklets": { "items": ["twitter", "linkedin", "instapaper", "delicious", "email", "sharethis"]} };
+            var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+        </script>
     </body>
 </html>
