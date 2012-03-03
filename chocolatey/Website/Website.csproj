@@ -219,22 +219,22 @@
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpStatusCodeWithBodyResult.cs">
       <Link>Infrastructure\HttpStatusCodeWithBodyResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneFileSystem.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneFileSystem.cs">
       <Link>Infrastructure\Lucene\LuceneFileSystem.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneCommon.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneCommon.cs">
       <Link>Infrastructure\Lucene\LuceneCommon.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneIndexingJob.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneIndexingJob.cs">
       <Link>Infrastructure\Lucene\LuceneIndexingJob.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneIndexingService.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneIndexingService.cs">
       <Link>Infrastructure\Lucene\LuceneIndexingService.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\PackageIndexEntity.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\PackageIndexEntity.cs">
       <Link>Infrastructure\Lucene\PackageIndexEntity.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneSearchService.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneSearchService.cs">
       <Link>Infrastructure\Lucene\LuceneSearchService.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\Jobs\WorkItemCleanupJob.cs">
@@ -362,13 +362,13 @@
     <Compile Include="..\..\nugetgallery\Website\Services\IFileStorageService.cs">
       <Link>Services\IFileStorageService.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Services\IIndexingService.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Services\IIndexingService.cs">
       <Link>Services\IIndexingService.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Services\ISearchService.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Services\ISearchService.cs">
       <Link>Services\ISearchService.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Services\PackageSearchResults.cs" >
+    <Compile Include="..\..\nugetgallery\Website\Services\PackageSearchResults.cs">
       <Link>Services\PackageSearchResults.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\IUploadFileService.cs">
@@ -1063,6 +1063,9 @@
     <Content Include="..\..\nugetgallery\Website\Errors\Error.html">
       <Link>Errors\Error.html</Link>
     </Content>
+    <Content Include="Content\chocolatey.css" />
+    <Content Include="Content\Images\AH_Logo_vertical.png" />
+    <Content Include="Content\Images\appharbor-logo.png" />
     <Content Include="Content\Images\changePassword.png" />
     <Content Include="Content\Images\contribGraphic.png" />
     <Content Include="Content\Images\download.png" />
@@ -1085,6 +1088,7 @@
     <Content Include="Content\Images\packageDefaultIcon.png" />
     <Content Include="Content\Images\packageOwnerActionIcons.png" />
     <Content Include="Content\Images\packagesDefaultIcon.png" />
+    <Content Include="Content\Images\RealDimensionsLogo.jpg" />
     <Content Include="Content\Images\recommended.png" />
     <Content Include="Content\Images\recommendedSmall.png" />
     <Content Include="Content\Images\required.png" />

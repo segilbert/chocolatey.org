@@ -1,23 +1,26 @@
 ﻿@using NuGetGallery;
-<!DOCTYPE html> 
-<html lang="en" class="static "> 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Chocolatey Gallery @ViewBag.TitleAppend</title> 
-        <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" />
-        <link href="@Url.Content("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
-        <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")"></script>
-        @MvcMiniProfiler.MiniProfiler.RenderIncludes()
-        @Microsoft.Web.Helpers.Analytics.GetGoogleHtml("UA-2743882-12")
-    </head>
-    <body>
-        <div id="content-wraper">
-            <header class="main">
+<!DOCTYPE html>
+<html lang="en" class="static ">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Chocolatey Gallery @ViewBag.TitleAppend</title>
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/chocolatey.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")"></script>
+
+    @MvcMiniProfiler.MiniProfiler.RenderIncludes()
+    @Microsoft.Web.Helpers.Analytics.GetGoogleHtml("UA-2743882-12")
+</head>
+<body>
+    <div id="content-wraper">
+        <header class="main">
                 <div id="logo"><a href="@Url.Home()">Chocolatey Gallery</a></div>
                 @Html.Partial(MVC.Shared.Views.UserDisplay)
             </header>
-            <nav class="main">
+        <nav class="main">
                 <ul id="menu">
                     @{
                         var homeClass = ViewBag.Tab == "Home" ? "current" : "";
@@ -38,15 +41,16 @@
                     </form>
                 </div>
             </nav>
-            <div id="body">
-            @if (TempData.ContainsKey("Message")) {
+        <div id="body">
+            @if (TempData.ContainsKey("Message"))
+            {
                 <p class="message">@TempData["Message"]</p>
             }
             @RenderBody()
-            </div>
         </div>
-        <div id="layout-footer" class="group">
-            <footer id="footer">
+    </div>
+    <div id="layout-footer" class="group">
+        <footer id="footer">
                 <ul class="recommended">
                     <li>
                         <a href="https://github.com/chocolatey/chocolatey/wiki">Overview</a>
@@ -64,7 +68,7 @@
                         <a href="https://github.com/chocolatey/chocolatey/wiki/ChocolateyFAQs">FAQ</a>
                         <p>Read the Frequently Asked Questions about Chocolatey.</p>
                     </li>
-                </ul>
+                </ul>  
                 <div class="license">
                     <p>
                         <a href="https://twitter.com/chocolateynuget" class="twitter-follow-button" data-show-count="true" data-width="250px" data-lang="en">Follow @@chocolateynuget</a>
@@ -76,18 +80,37 @@
                         &copy; @DateTime.UtcNow.Year FerventCoder Software.
                     </p>
                     @ViewHelpers.ReleaseTag() 
-
+                </div>
+                <div  class="supporters">Site made possible by the following sponsors:
+                    <ul class="supporters">
+                        <li></li>
+                        <li><a href="http://codingutopia.com">RealDimensions</a>
+                            <a id="realdimensions-logo" href="http://codingutopia.com"></a>
+                        </li>
+                        <li>
+                            <a href="http://appharbor.com">AppHarbor</a>
+                            <a id="appharbor-logo" href="http://appharbor.com"></a>
+                        </li>
+                        <li></li>
+                    </ul>
                 </div>
             </footer>
-        </div>
-        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
-        @RenderSection("BottomScripts", required: false)
-        <script type="text/javascript">var switchTo5x = true;</script>
-        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-        <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
-        <script type="text/javascript">
-            var options = { "publisher": "ur-c2abd95b-4a79-34b2-10fc-622d72ca1889", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0 }, "chicklets": { "items": ["twitter", "linkedin", "instapaper", "delicious", "email", "sharethis"]} };
-            var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
-        </script>
-    </body>
+    </div>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+
+    @RenderSection("BottomScripts", required: false)
+
+    <script type="text/javascript">        var switchTo5x = true;</script>
+
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+
+    <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+
+    <script type="text/javascript">
+        var options = { "publisher": "ur-c2abd95b-4a79-34b2-10fc-622d72ca1889", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0 }, "chicklets": { "items": ["twitter", "linkedin", "instapaper", "delicious", "email", "sharethis"]} };
+        var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+    </script>
+
+</body>
 </html>

@@ -1,0 +1,70 @@
+﻿/* Footer */
+#layout-footer {
+    background:#e4f1f7;
+    color: #3e483c;
+    clear: both;
+    border-top: 1px solid #d3e7fe;   
+    padding-top: 0px;
+    padding-bottom: 0px;
+    position: relative;
+    margin-top: -161px;
+    height: 330px;
+}
+
+.supporters
+{
+    padding-top: 10px; 
+    vertical-align: bottom;
+    clear: both;
+    height: 140px;
+}
+
+    footer#footer ul.supporters {
+        width: 760px;
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+        footer#footer ul.supporters li {
+            margin-left: 0;
+            float: left;
+            text-align: center;
+            padding: 10px;
+            width: 170px;
+        }
+
+            footer#footer ul.supporters li a {
+                display: block;
+                font-size: 1.3em;
+            }
+
+            footer#footer ul.supporters li p {
+                font-size: .9em;
+            }    
+
+#realdimensions-logo
+{
+    background: url(../Content/Images/RealDimensionsLogo.jpg) no-repeat;
+    height: 60px;
+    display: block;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-bottom: 0px;
+    width: 77px;
+    vertical-align: bottom;
+}
+
+#appharbor-logo
+{
+    background: url(../Content/Images/appharbor-logo.png) no-repeat;
+    height: 60px;
+    display: block;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 60px;
+    vertical-align: bottom;
+}
