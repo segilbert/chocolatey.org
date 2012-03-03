@@ -1,1 +1,1 @@
-https://github.com/NuGet/NuGetGallery/commit/289933124ca2e7cfc93c00dee588a00f96da8e62
+https://github.com/NuGet/NuGetGallery/commit/2b553adb22bde6a715188f7fdd44d033cebf5ab2
