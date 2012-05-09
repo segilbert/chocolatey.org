@@ -7,18 +7,14 @@
         <p>Chocolatey NuGet is a Machine Package Manager, somewhat like apt-get, but built with windows in mind.</p>
         <h2>Easy Install!</h2>
         <p style="vertical-align:bottom;font-size:18px">
-        To install chocolatey now, open a powershell prompt 
-            <span style="color:red;">
-                (execution policy needs to be unrestricted - PS:\> <span style="font-weight:bold">Set-ExecutionPolicy Unrestricted</span>)
-            </span>, 
-            paste the text from the box below and press enter (minus the PS:\&gt; of course ;)) 
+        To install chocolatey now, open a command prompt and paste the text from the box below and press enter (minus the C:\&gt; of course ;)) 
         </p>
     </div>
     <img src="@Url.Content("~/content/images/hero.png")" alt="Chocolatey install of mSysGit (cinst msysgit)" />
 </section>
 <div class="nuget-badge">
     <p>
-        <code>PS:\&gt; iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall'))</code>
+        <code>C:\&gt; @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall'))"</code>
     </p>
 </div>
 <section class="release">
