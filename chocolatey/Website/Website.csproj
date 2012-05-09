@@ -19,6 +19,7 @@
     <RestorePackages>true</RestorePackages>
     <CodeAnalysisRuleSet>CodeAnalysis.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
     <RunCodeAnalysis Condition=" '$(CodeAnalysis)' == 'true' ">true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -48,8 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\AWSSDK.1.3.18.0\lib\AWSSDK.dll</HintPath>
     </Reference>
-    <Reference Include="DynamicData.EFCodeFirstProvider">
-      <HintPath>..\..\packages\DynamicData.EFCodeFirstProvider.0.2\lib\net40\DynamicData.EFCodeFirstProvider.dll</HintPath>
+    <Reference Include="DynamicData.EFCodeFirstProvider, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DynamicData.EFCodeFirstProvider.0.3.0.0\lib\net40\DynamicData.EFCodeFirstProvider.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -58,11 +60,10 @@
     <Reference Include="Elmah.Contrib.Mvc">
       <HintPath>..\..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.Migrations">
-      <HintPath>..\..\packages\EntityFramework.Migrations.0.7.0.0\lib\net40\EntityFramework.Migrations.dll</HintPath>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Lucene.Net">
       <HintPath>..\..\packages\Lucene.Net.2.9.2.2\lib\net40\Lucene.Net.dll</HintPath>
@@ -86,12 +87,15 @@
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WindowsAzure.Storage.1.6\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
+    <Reference Include="MiniProfiler">
+      <HintPath>..\..\packages\MiniProfiler.2.0.0-rc1\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework">
+      <HintPath>..\..\packages\MiniProfiler.EF.2.0.1-rc1\lib\net40\MiniProfiler.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MvcHaack.Ajax, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MvcHaack.Ajax.1.1\lib\net40\MvcHaack.Ajax.dll</HintPath>
-    </Reference>
-    <Reference Include="MvcMiniProfiler">
-      <HintPath>..\..\packages\MiniProfiler.1.7\lib\MvcMiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -121,15 +125,30 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services" />
     <Reference Include="System.Data.Services.Client" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetMvc.3.0.20105.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetRazor.Core.1.0.20105.407\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -139,6 +158,10 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -168,8 +191,29 @@
       <Link>ApiController.generated.cs</Link>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\App_Start\BackgroundTasksSetup.cs">
-      <Link>App_Start\BackgroundTasksSetup.cs</Link>
+    <Compile Include="..\..\nugetgallery\Website\Commands\AppCommand.cs">
+      <Link>Commands\AppCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\AutomaticallyCuratePackageCommand.cs">
+      <Link>Commands\AutomaticallyCuratePackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\CreateCuratedPackageCommand.cs">
+      <Link>Commands\CreateCuratedPackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\DeleteCuratedPackageCommand.cs">
+      <Link>Commands\DeleteCuratedPackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Commands\ModifyCuratedPackageCommand.cs">
+      <Link>Commands\ModifyCuratedPackageCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\AppController.cs">
+      <Link>Controllers\AppController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\CuratedFeedsController.cs">
+      <Link>Controllers\CuratedFeedsController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Controllers\CuratedPackagesController.cs">
+      <Link>Controllers\CuratedPackagesController.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\DataServices\V1FeedPackage.cs">
       <Link>DataServices\V1FeedPackage.cs</Link>
@@ -191,6 +235,10 @@
       <Link>DataServices\PackageExtensions.cs</Link>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\V2CuratedFeed.svc.cs">
+      <Link>DataServices\V2CuratedFeed.svc.cs</Link>
+      <DependentUpon>V2CuratedFeed.svc</DependentUpon>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\DataServices\V2Feed.svc.cs">
       <Link>DataServices\V2Feed.svc.cs</Link>
       <DependentUpon>V2Feed.svc</DependentUpon>
@@ -199,6 +247,12 @@
     <Compile Include="..\..\nugetgallery\Website\DataServices\V2FeedPackage.cs">
       <Link>DataServices\V2FeedPackage.cs</Link>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\CuratedFeed.cs">
+      <Link>Entities\CuratedFeed.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Entities\CuratedPackage.cs">
+      <Link>Entities\CuratedPackage.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Entities\GallerySetting.cs">
       <Link>Entities\GallerySetting.cs</Link>
@@ -331,9 +385,63 @@
       <Link>Migrations\201201031925005_AddPasswordHash.Designer.cs</Link>
       <DependentUpon>201201031925005_AddPasswordHash.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180016174_CuratedFeeds.cs">
+      <Link>Migrations\201203180016174_CuratedFeeds.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180016174_CuratedFeeds.designer.cs">
+      <Link>Migrations\201203180016174_CuratedFeeds.designer.cs</Link>
+      <DependentUpon>201203180016174_CuratedFeeds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180320147_ChangeCuratedFeedIdToName.cs">
+      <Link>Migrations\201203180320147_ChangeCuratedFeedIdToName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203180320147_ChangeCuratedFeedIdToName.designer.cs">
+      <Link>Migrations\201203180320147_ChangeCuratedFeedIdToName.designer.cs</Link>
+      <DependentUpon>201203180320147_ChangeCuratedFeedIdToName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203182132476_CuratedPackages.cs">
+      <Link>Migrations\201203182132476_CuratedPackages.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201203182132476_CuratedPackages.designer.cs">
+      <Link>Migrations\201203182132476_CuratedPackages.designer.cs</Link>
+      <DependentUpon>201203182132476_CuratedPackages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\AutomaticPackageCurator.cs">
+      <Link>PackageCurators\AutomaticPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\IAutomaticPackageCurator.cs">
+      <Link>PackageCurators\IAutomaticPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\WebMatrixPackageCurator.cs">
+      <Link>PackageCurators\WebMatrixPackageCurator.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\PackagesController.generated.cs">
       <Link>PackagesController.generated.cs</Link>
       <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedByKeyQuery.cs">
+      <Link>Queries\CuratedFeedByKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedByNameQuery.cs">
+      <Link>Queries\CuratedFeedByNameQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedsByManagerKeyQuery.cs">
+      <Link>Queries\CuratedFeedsByManagerKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageRegistrationByIdQuery.cs">
+      <Link>Queries\PackageRegistrationByIdQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageRegistrationByKeyQuery.cs">
+      <Link>Queries\PackageRegistrationByKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\UserByUSernameQuery.cs">
+      <Link>Queries\UserByUSernameQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\CreateCuratedPackageRequest.cs">
+      <Link>RequestModels\CreateCuratedPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\RequestModels\ModifyCuratedPackageRequest.cs">
+      <Link>RequestModels\ModifyCuratedPackageRequest.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobClientWrapper.cs">
       <Link>Services\CloudBlobClientWrapper.cs</Link>
@@ -386,6 +494,12 @@
     <Compile Include="..\..\nugetgallery\Website\Services\UploadFileService.cs">
       <Link>Services\UploadFileService.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\AccountViewModel.cs">
+      <Link>ViewModels\AccountViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\CuratedFeedViewModel.cs">
+      <Link>ViewModels\CuratedFeedViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\ViewModels\EditProfileViewModel.cs">
       <Link>ViewModels\EditProfileViewModel.cs</Link>
     </Compile>
@@ -398,18 +512,9 @@
     <Compile Include="..\..\nugetgallery\Website\ViewModels\ResendConfirmationEmailViewModel.cs">
       <Link>ViewModels\ResendConfirmationEmailViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\App_Start\MiniProfiler.cs">
-      <Link>App_Start\MiniProfiler.cs</Link>
-    </Compile>
-    <Compile Include="..\..\nugetgallery\Website\App_Start\NinjectMVC3.cs">
-      <Link>App_Start\NinjectMVC3.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\AuthenticationController.generated.cs">
       <Link>AuthenticationController.generated.cs</Link>
       <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\nugetgallery\Website\BuildTasks\UpdateDatabase.cs">
-      <Link>BuildTasks\UpdateDatabase.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Controllers\ApiController.cs">
       <Link>Controllers\ApiController.cs</Link>
@@ -915,7 +1020,7 @@
     <Compile Include="..\..\nugetgallery\Website\ViewModels\UserProfileModel.cs">
       <Link>ViewModels\UserProfileModel.cs</Link>
     </Compile>
-    <Compile Include="App_Start\BootStrapper.cs" />
+    <Compile Include="App_Start\AppActivator.cs" />
     <Compile Include="App_Start\Configuration.cs" />
     <Compile Include="App_Start\ContainerBindings.cs" />
     <Compile Include="App_Start\IConfiguration.cs" />
@@ -923,7 +1028,7 @@
     <Compile Include="App_Start\Routes.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\RssController.cs" />
-    <Compile Include="Migrations\Settings.cs" />
+    <Compile Include="Migrations\MigrationsConfiguration.cs" />
     <Compile Include="MvcOverrides\CustomMvcHandler.cs" />
     <Compile Include="MvcOverrides\CustomMvcRouteHandler.cs" />
     <Compile Include="MvcOverrides\HttpContextDecorator.cs" />
@@ -939,6 +1044,9 @@
   <ItemGroup>
     <Content Include="..\..\nugetgallery\Website\DataServices\V1Feed.svc">
       <Link>DataServices\V1Feed.svc</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\DataServices\V2CuratedFeed.svc">
+      <Link>DataServices\V2CuratedFeed.svc</Link>
     </Content>
     <Content Include="..\..\nugetgallery\Website\DataServices\V2Feed.svc">
       <Link>DataServices\V2Feed.svc</Link>
@@ -1068,6 +1176,7 @@
     <Content Include="Content\Images\appharbor-logo.png" />
     <Content Include="Content\Images\changePassword.png" />
     <Content Include="Content\Images\contribGraphic.png" />
+    <Content Include="Content\Images\copy.png" />
     <Content Include="Content\Images\download.png" />
     <Content Include="Content\Images\editIcon.png" />
     <Content Include="Content\Images\editProfile.png" />
@@ -1124,6 +1233,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-latest.js" />
     <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Scripts\ZeroClipboard.js" />
+    <Content Include="Scripts\ZeroClipboard.swf" />
     <Content Include="Views\Pages\Home.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -1135,13 +1246,6 @@
     <Content Include="packages.config" />
     <Content Include="App_Code\ViewHelpers.cshtml" />
     <Content Include="_app_offline.htm" />
-    <Content Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
-    <Content Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
-    <Content Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
-    <Content Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
-    <Content Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
-    <Content Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1204,6 +1308,8 @@
     <Content Include="Views\Users\Thanks.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\CuratedFeeds\CuratedFeed.cshtml" />
+    <Content Include="Views\CuratedPackages\CreateCuratedPackageForm.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -1236,5 +1342,5 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
-  <Import Project="$(SolutionDir)\chocolatey\3rdParty\RazorGenerator\RazorGenerator.targets" />
+  <Import Project="$(SolutionDir)\packages\RazorGenerator.MsBuild.*\tools\RazorGenerator.targets" />
 </Project>

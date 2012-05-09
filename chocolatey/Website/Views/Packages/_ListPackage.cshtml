@@ -8,6 +8,7 @@
     <div class="main">
         <header>
             <h1><a href="@Url.Package(Model.Id, Model.UseVersion ? Model.Version : null)">@Model.Title @if (Model.UseVersion) {<text> @Model.Version</text>}</a></h1>
+            @*<pre>cinst @Model.Id</pre>*@
             <h2>By:</h2>
             <ul class="owners">
                 @foreach (var owner in Model.Owners) {

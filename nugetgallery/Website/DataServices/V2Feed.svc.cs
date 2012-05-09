@@ -18,8 +18,8 @@ namespace NuGetGallery
 
         }
 
-        public V2Feed(IEntityRepository<Package> repo, IConfiguration configuration, ISearchService searchSvc)
-            : base(repo, configuration, searchSvc)
+        public V2Feed(IEntitiesContext entities, IEntityRepository<Package> repo, IConfiguration configuration, ISearchService searchSvc)
+            : base(entities, repo, configuration, searchSvc)
         {
 
         }
@@ -29,7 +29,7 @@ namespace NuGetGallery
             return new FeedContext<V2FeedPackage>
             {
                 Packages = PackageRepo.GetAll()
-                                      .ToV2FeedPackageQuery(Configuration.SiteRoot)
+                                      .ToV2FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()))
             };
         }
 
@@ -43,15 +43,15 @@ namespace NuGetGallery
                 packages = packages.Where(p => !p.IsPrerelease);
             }
             return packages.Search(searchTerm)
-                           .ToV2FeedPackageQuery(Configuration.SiteRoot);
+                           .ToV2FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
         }
 
         [WebGet]
         public IQueryable<V2FeedPackage> FindPackagesById(string id)
         {
             return PackageRepo.GetAll().Include(p => p.PackageRegistration)
-                                       .Where(p => p.PackageRegistration.Id.Equals(id, StringComparison.OrdinalIgnoreCase) && p.Listed)
-                                       .ToV2FeedPackageQuery(Configuration.SiteRoot);
+                                       .Where(p => p.PackageRegistration.Id.Equals(id, StringComparison.OrdinalIgnoreCase))
+                                       .ToV2FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
         }
 
         public override Uri GetReadStreamUri(

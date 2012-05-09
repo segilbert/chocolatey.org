@@ -23,7 +23,7 @@
         [ActionName("feed.rss")]
         public ActionResult Feed(int? page, int? pageSize)
         {
-            var siteRoot = EnsureTrailingSlash(Configuration.SiteRoot);
+            var siteRoot = EnsureTrailingSlash(Configuration.GetSiteRoot(useHttps:false));
             IQueryable<Package> packageVersions = packageSvc.GetLatestPackageVersions(allowPrerelease: false)
                 .OrderByDescending(p => p.Published);
 

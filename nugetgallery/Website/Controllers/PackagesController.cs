@@ -23,19 +23,22 @@ namespace NuGetGallery
         private readonly IUserService userSvc;
         private readonly IMessageService messageService;
         private readonly ISearchService searchSvc;
+        private readonly IAutomaticallyCuratePackageCommand autoCuratedPackageCmd;
 
         public PackagesController(
             IPackageService packageSvc,
             IUploadFileService uploadFileSvc,
             IUserService userSvc,
             IMessageService messageService,
-            ISearchService searchSvc)
+            ISearchService searchSvc,
+            IAutomaticallyCuratePackageCommand autoCuratedPackageCmd)
         {
             this.packageSvc = packageSvc;
             this.uploadFileSvc = uploadFileSvc;
             this.userSvc = userSvc;
             this.messageService = messageService;
             this.searchSvc = searchSvc;
+            this.autoCuratedPackageCmd = autoCuratedPackageCmd;
         }
 
         [Authorize]
@@ -123,7 +126,7 @@ namespace NuGetGallery
             return View(model);
         }
 
-        public virtual ActionResult ListPackages(string q, string sortOrder = "", int page = 1)
+        public virtual ActionResult ListPackages(string q, string sortOrder = Constants.PopularitySortOrder, int page = 1)
         {
             if (page < 1)
             {
@@ -147,9 +150,14 @@ namespace NuGetGallery
             int totalHits;
             if (!String.IsNullOrEmpty(q))
             {
-                if (String.IsNullOrEmpty(sortOrder))
+                if (sortOrder.Equals(Constants.RelevanceSortOrder, StringComparison.OrdinalIgnoreCase))
                 {
                     packageVersions = searchSvc.SearchWithRelevance(packageVersions, q, take: page * Constants.DefaultPackageListPageSize, totalHits: out totalHits);
+                    if (page == 1 && !packageVersions.Any())
+                    {
+                        // In the event the index wasn't updated, we may get an incorrect count. 
+                        totalHits = 0;
+                    }
                 }
                 else
                 {
@@ -181,12 +189,14 @@ namespace NuGetGallery
         {
             switch (sortOrder)
             {
-                case "package-title":
+                case Constants.AlphabeticSortOrder:
                     return "PackageRegistration.Id";
-                case "package-created":
+                case Constants.RecentSortOrder:
                     return "Published desc";
+                case Constants.PopularitySortOrder:
+                default:
+                    return "PackageRegistration.DownloadCount desc";
             }
-            return "PackageRegistration.DownloadCount desc";
         }
 
         // NOTE: Intentionally NOT requiring authentication
@@ -498,6 +508,7 @@ namespace NuGetGallery
                 if (listed.HasValue && listed.Value == false)
                     packageSvc.MarkPackageUnlisted(package);
                 uploadFileSvc.DeleteUploadFile(currentUser.Key);
+                autoCuratedPackageCmd.Execute(package, nugetPackage);
                 tx.Complete();
             }
 

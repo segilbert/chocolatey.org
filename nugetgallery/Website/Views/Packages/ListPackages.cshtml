@@ -7,10 +7,10 @@
 
 <hgroup class="search">
     @if (!String.IsNullOrEmpty(Model.SearchTerm)) {
-    <h1>Search for "@Model.SearchTerm" returned @Model.TotalCount packages</h1>
+        <h1>Search for "@Model.SearchTerm" returned @Model.TotalCount @if (Model.TotalCount == 1) { <text>package</text> } else { <text>packages</text> }</h1>
     }
     else {
-    <h1>There are @Model.TotalCount packages</h1>
+        <h1>@if (Model.TotalCount == 1) { <text>There is @Model.TotalCount package</text> } else { <text>There are @Model.TotalCount packages</text> }</h1>
     }
     @if (@Model.LastResultIndex > 0)
     {
@@ -25,10 +25,10 @@
         <div class="form-field">
             <label for="sortOrder">Sort By</label>
             <select name="sortOrder" id="sortOrder">
-                @ViewHelpers.Option("", "Relevance", Model.SortOrder)
-                @ViewHelpers.Option("package-title", "A-Z", Model.SortOrder)
-                @ViewHelpers.Option("package-download-count", "Popularity", Model.SortOrder)
-                @ViewHelpers.Option("package-created", "Recent", Model.SortOrder)
+                @ViewHelpers.Option(Constants.PopularitySortOrder, "Popularity", Model.SortOrder)
+                @ViewHelpers.Option(Constants.RelevanceSortOrder, "Relevance", Model.SortOrder)
+                @ViewHelpers.Option(Constants.AlphabeticSortOrder, "A-Z", Model.SortOrder)
+                @ViewHelpers.Option(Constants.RecentSortOrder, "Recent", Model.SortOrder)
             </select>
         </div>
     </fieldset>

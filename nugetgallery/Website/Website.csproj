@@ -19,6 +19,7 @@
     <RestorePackages>true</RestorePackages>
     <CodeAnalysisRuleSet>CodeAnalysis.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
     <RunCodeAnalysis Condition=" '$(CodeAnalysis)' == 'true' ">true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -44,8 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AnglicanGeek.MarkdownMailer.1.2\lib\net40\AnglicanGeek.MarkdownMailer.dll</HintPath>
     </Reference>
-    <Reference Include="DynamicData.EFCodeFirstProvider">
-      <HintPath>..\packages\DynamicData.EFCodeFirstProvider.0.2\lib\net40\DynamicData.EFCodeFirstProvider.dll</HintPath>
+    <Reference Include="DynamicData.EFCodeFirstProvider, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DynamicData.EFCodeFirstProvider.0.3.0.0\lib\net40\DynamicData.EFCodeFirstProvider.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -54,11 +56,10 @@
     <Reference Include="Elmah.Contrib.Mvc">
       <HintPath>..\packages\Elmah.Contrib.Mvc.1.0\lib\net40\Elmah.Contrib.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.Migrations">
-      <HintPath>..\packages\EntityFramework.Migrations.0.7.0.0\lib\net40\EntityFramework.Migrations.dll</HintPath>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Lucene.Net">
       <HintPath>..\packages\Lucene.Net.2.9.2.2\lib\net40\Lucene.Net.dll</HintPath>
@@ -82,12 +83,15 @@
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.1.6\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
+    <Reference Include="MiniProfiler">
+      <HintPath>..\packages\MiniProfiler.2.0.0-rc1\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework">
+      <HintPath>..\packages\MiniProfiler.EF.2.0.1-rc1\lib\net40\MiniProfiler.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MvcHaack.Ajax, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvcHaack.Ajax.1.1\lib\net40\MvcHaack.Ajax.dll</HintPath>
-    </Reference>
-    <Reference Include="MvcMiniProfiler">
-      <HintPath>..\packages\MiniProfiler.1.7\lib\MvcMiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -121,10 +125,26 @@
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetMvc.3.0.20105.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetRazor.Core.1.0.20105.407\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -134,6 +154,10 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -159,8 +183,18 @@
     <Compile Include="ApiController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BackgroundTasksSetup.cs" />
     <Compile Include="App_Start\PackageStoreType.cs" />
+    <Compile Include="Commands\AppCommand.cs" />
+    <Compile Include="Commands\DeleteCuratedPackageCommand.cs" />
+    <Compile Include="Commands\ModifyCuratedPackageCommand.cs" />
+    <Compile Include="Commands\CreateCuratedPackageCommand.cs" />
+    <Compile Include="Commands\AutomaticallyCuratePackageCommand.cs" />
+    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\CuratedFeedsController.cs" />
+    <Compile Include="Controllers\CuratedPackagesController.cs" />
+    <Compile Include="DataServices\V2CuratedFeed.svc.cs">
+      <DependentUpon>V2CuratedFeed.svc</DependentUpon>
+    </Compile>
     <Compile Include="DataServices\V1FeedPackage.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -182,6 +216,8 @@
     <Compile Include="DataServices\V2FeedPackage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\CuratedFeed.cs" />
+    <Compile Include="Entities\CuratedPackage.cs" />
     <Compile Include="Entities\GallerySetting.cs" />
     <Compile Include="HelpersController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -200,58 +236,105 @@
     <Compile Include="JsonApiController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201110060711357_Initial.cs" />
+    <Compile Include="Migrations\201110060711357_Initial.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201110060711357_Initial.Designer.cs">
       <DependentUpon>201110060711357_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201110102157002_PrereleaseChanges.cs" />
+    <Compile Include="Migrations\201110102157002_PrereleaseChanges.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201110102157002_PrereleaseChanges.Designer.cs">
       <DependentUpon>201110102157002_PrereleaseChanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201110180052097_GallerySettings.cs" />
+    <Compile Include="Migrations\201110180052097_GallerySettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201110180052097_GallerySettings.Designer.cs">
       <DependentUpon>201110180052097_GallerySettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201110230649210_PackageOwnerRequests.cs" />
+    <Compile Include="Migrations\201110230649210_PackageOwnerRequests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201110230649210_PackageOwnerRequests.Designer.cs">
       <DependentUpon>201110230649210_PackageOwnerRequests.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111022024584_PackageDependencyVersionSpec.cs" />
+    <Compile Include="Migrations\201111022024584_PackageDependencyVersionSpec.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111022024584_PackageDependencyVersionSpec.Designer.cs">
       <DependentUpon>201111022024584_PackageDependencyVersionSpec.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111022051010_PackageReleaseNotes.cs" />
+    <Compile Include="Migrations\201111022051010_PackageReleaseNotes.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111022051010_PackageReleaseNotes.Designer.cs">
       <DependentUpon>201111022051010_PackageReleaseNotes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111080239544_ListPackagesIndexes.cs" />
+    <Compile Include="Migrations\201111080239544_ListPackagesIndexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111080239544_ListPackagesIndexes.Designer.cs">
       <DependentUpon>201111080239544_ListPackagesIndexes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111080816426_DisplayPackageIndexes.cs" />
+    <Compile Include="Migrations\201111080816426_DisplayPackageIndexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111080816426_DisplayPackageIndexes.Designer.cs">
       <DependentUpon>201111080816426_DisplayPackageIndexes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111081908453_MyPackagesIndexes.cs" />
+    <Compile Include="Migrations\201111081908453_MyPackagesIndexes.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111081908453_MyPackagesIndexes.Designer.cs">
       <DependentUpon>201111081908453_MyPackagesIndexes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111150729167_AddSmtpPassword.cs" />
+    <Compile Include="Migrations\201111150729167_AddSmtpPassword.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111150729167_AddSmtpPassword.Designer.cs">
       <DependentUpon>201111150729167_AddSmtpPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201111222338036_GalleryOwnerEmailSettings.cs" />
+    <Compile Include="Migrations\201111222338036_GalleryOwnerEmailSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201111222338036_GalleryOwnerEmailSettings.Designer.cs">
       <DependentUpon>201111222338036_GalleryOwnerEmailSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201201031925005_AddPasswordHash.cs" />
+    <Compile Include="Migrations\201201031925005_AddPasswordHash.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201201031925005_AddPasswordHash.Designer.cs">
       <DependentUpon>201201031925005_AddPasswordHash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Settings.cs" />
+    <Compile Include="Migrations\201203180016174_CuratedFeeds.cs" />
+    <Compile Include="Migrations\201203180016174_CuratedFeeds.Designer.cs">
+      <DependentUpon>201203180016174_CuratedFeeds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201203180320147_ChangeCuratedFeedIdToName.cs" />
+    <Compile Include="Migrations\201203180320147_ChangeCuratedFeedIdToName.Designer.cs">
+      <DependentUpon>201203180320147_ChangeCuratedFeedIdToName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201203182132476_CuratedPackages.cs" />
+    <Compile Include="Migrations\201203182132476_CuratedPackages.Designer.cs">
+      <DependentUpon>201203182132476_CuratedPackages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MigrationsConfiguration.cs" />
+    <Compile Include="PackageCurators\IAutomaticPackageCurator.cs" />
+    <Compile Include="PackageCurators\AutomaticPackageCurator.cs" />
+    <Compile Include="PackageCurators\WebMatrixPackageCurator.cs" />
     <Compile Include="PackagesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Queries\PackageRegistrationByIdQuery.cs" />
+    <Compile Include="Queries\CuratedFeedByKeyQuery.cs" />
+    <Compile Include="Queries\CuratedFeedByNameQuery.cs" />
+    <Compile Include="Queries\CuratedFeedsByManagerKeyQuery.cs" />
+    <Compile Include="Queries\PackageRegistrationByKeyQuery.cs" />
+    <Compile Include="Queries\UserByUsernameQuery.cs" />
+    <Compile Include="RequestModels\ModifyCuratedPackageRequest.cs" />
+    <Compile Include="RequestModels\CreateCuratedPackageRequest.cs" />
     <Compile Include="Services\CloudBlobClientWrapper.cs" />
     <Compile Include="Services\CloudBlobContainerWrapper.cs" />
     <Compile Include="Services\CloudBlobFileStorageService.cs" />
@@ -269,18 +352,17 @@
     <Compile Include="Services\PackageSearchResults.cs" />
     <Compile Include="Services\TestableStorageClientException.cs" />
     <Compile Include="Services\UploadFileService.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\CuratedFeedViewModel.cs" />
     <Compile Include="ViewModels\EditProfileViewModel.cs" />
     <Compile Include="ViewModels\EmailConfirmationModel.cs" />
     <Compile Include="ViewModels\PackageOwnerConfirmationModel.cs" />
     <Compile Include="ViewModels\ResendConfirmationEmailViewModel.cs" />
     <Compile Include="App_Start\AuthenticationModule.cs" />
-    <Compile Include="App_Start\MiniProfiler.cs" />
-    <Compile Include="App_Start\NinjectMVC3.cs" />
-    <Compile Include="App_Start\Bootstrapper.cs" />
+    <Compile Include="App_Start\AppActivator.cs" />
     <Compile Include="AuthenticationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="BuildTasks\UpdateDatabase.cs" />
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\JsonApiController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
@@ -597,6 +679,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\changePassword.png" />
+    <Content Include="Content\Images\copy.png" />
     <Content Include="Content\Images\errorPage.png" />
     <Content Include="Content\Images\editProfile.png" />
     <Content Include="Content\Images\managePackages.png" />
@@ -630,6 +713,7 @@
     <Content Include="Content\Images\userIconWhite.png" />
     <Content Include="Content\Images\xmark.png" />
     <Content Include="Content\Images\sendMessageGraphic.png" />
+    <Content Include="DataServices\V2CuratedFeed.svc" />
     <Content Include="DataServices\V1Feed.svc" />
     <Content Include="DataServices\V2Feed.svc" />
     <Content Include="DynamicData\Content\GridViewPager.ascx" />
@@ -682,6 +766,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-latest.js" />
     <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Scripts\ZeroClipboard.js" />
+    <Content Include="Scripts\ZeroClipboard.swf" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -712,10 +798,7 @@
     <Content Include="Views\Users\Account.cshtml" />
     <Content Include="Views\Users\Packages.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
-    <Content Include="App_Code\ViewHelpers.cshtml">
-      <CustomToolNamespace>NuGetGallery</CustomToolNamespace>
-      <Generator>1</Generator>
-    </Content>
+    <Content Include="App_Code\ViewHelpers.cshtml" />
     <Content Include="Views\Users\ChangePassword.cshtml" />
     <Content Include="Views\Users\PasswordChanged.cshtml" />
     <Content Include="Views\Users\ForgotPassword.cshtml" />
@@ -738,6 +821,8 @@
     <Content Include="Views\Users\ResendConfirmation.cshtml">
     </Content>
     <Compile Include="Infrastructure\Lucene\LuceneSearchService.cs" />
+    <Content Include="Views\CuratedFeeds\CuratedFeed.cshtml" />
+    <Content Include="Views\CuratedPackages\CreateCuratedPackageForm.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
@@ -803,5 +888,5 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
-  <Import Project="$(SolutionDir)\3rdParty\RazorGenerator\RazorGenerator.targets" />
+  <Import Project="$(SolutionDir)\packages\RazorGenerator.MsBuild.*\tools\RazorGenerator.targets" />
 </Project>

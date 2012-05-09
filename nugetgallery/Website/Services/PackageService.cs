@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Transactions;
-using MvcMiniProfiler;
 using NuGet;
+using StackExchange.Profiling;
 
 namespace NuGetGallery
 {
@@ -106,8 +106,7 @@ namespace NuGetGallery
             // Optimization: Everytime we look at a package we almost always want to see 
             // all the other packages with the same ID via the PackageRegistration property. 
             // This resulted in a gnarly query. 
-            // Instead, we can always query for all packages with the ID and then fix up 
-            // the Packages property for the one we plan to return.
+            // Instead, we can always query for all packages with the ID.
             IEnumerable<Package> packagesQuery = packageRepo.GetAll()
                                                             .Include(p => p.Authors)
                                                             .Include(p => p.PackageRegistration)
@@ -143,10 +142,6 @@ namespace NuGetGallery
                 package = packageVersions
                     .Where(p => p.PackageRegistration.Id.Equals(id, StringComparison.OrdinalIgnoreCase) && p.Version.Equals(version, StringComparison.OrdinalIgnoreCase))
                     .SingleOrDefault();
-            }
-            if (package != null)
-            {
-                package.PackageRegistration.Packages = packageVersions;
             }
             return package;
         }
@@ -256,8 +251,6 @@ namespace NuGetGallery
             if (package != null)
                 throw new EntityException("A package with identifier '{0}' and version '{1}' already exists.", packageRegistration.Id, package.Version);
 
-            // TODO: add flattened authors, and other properties
-            // TODO: add package size
             var now = DateTime.UtcNow;
             var packageFileStream = nugetPackage.GetStream();
 

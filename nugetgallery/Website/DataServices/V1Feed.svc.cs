@@ -17,8 +17,8 @@ namespace NuGetGallery
 
         }
 
-        public V1Feed(IEntityRepository<Package> repo, IConfiguration configuration, ISearchService searchSvc)
-            : base(repo, configuration, searchSvc)
+        public V1Feed(IEntitiesContext entities, IEntityRepository<Package> repo, IConfiguration configuration, ISearchService searchSvc)
+            : base(entities, repo, configuration, searchSvc)
         {
 
         }
@@ -29,7 +29,7 @@ namespace NuGetGallery
             {
                 Packages = PackageRepo.GetAll()
                                       .Where(p => !p.IsPrerelease)
-                                      .ToV1FeedPackageQuery(Configuration.SiteRoot)
+                                      .ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()))
             };
         }
 
@@ -50,8 +50,8 @@ namespace NuGetGallery
         public IQueryable<V1FeedPackage> FindPackagesById(string id)
         {
             return PackageRepo.GetAll().Include(p => p.PackageRegistration)
-                                       .Where(p => !p.IsPrerelease && p.PackageRegistration.Id.Equals(id, StringComparison.OrdinalIgnoreCase) && p.Listed)
-                                       .ToV1FeedPackageQuery(Configuration.SiteRoot);
+                                       .Where(p => !p.IsPrerelease && p.PackageRegistration.Id.Equals(id, StringComparison.OrdinalIgnoreCase))
+                                       .ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
         }
 
         [WebGet]
@@ -62,10 +62,10 @@ namespace NuGetGallery
 
             if (String.IsNullOrEmpty(searchTerm))
             {
-                return packages.ToV1FeedPackageQuery(Configuration.SiteRoot);
+                return packages.ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
             }
             return SearchService.Search(packages, searchTerm)
-                                .ToV1FeedPackageQuery(Configuration.SiteRoot);
+                                .ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
         }
     }
 }

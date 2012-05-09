@@ -1,29 +1,29 @@
-﻿using System.Configuration;
-using System.Data.Common;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
-using MvcMiniProfiler.Data;
+﻿using System.Data.Entity;
+using System.Linq;
 using WebBackgrounder;
 
 namespace NuGetGallery
 {
-    public class EntitiesContext : DbContext, IWorkItemsContext
+    public interface IEntitiesContext
+    {
+        int SaveChanges();
+        DbSet<T> Set<T>() where T : class;
+
+        IDbSet<CuratedFeed> CuratedFeeds { get; set; }
+        IDbSet<CuratedPackage> CuratedPackages { get; set; }
+        IDbSet<PackageRegistration> PackageRegistrations { get; set; }
+        IDbSet<User> Users { get; set; }        
+    }
+
+    public class EntitiesContext : DbContext, IWorkItemsContext, IEntitiesContext
     {
         public EntitiesContext()
-            : base(GetConnection("NuGetGallery"), contextOwnsConnection: true)
-        {
-        }
-
-        public EntitiesContext(string connectionStringName)
-            : base(connectionStringName)
+            : base("NuGetGallery")
         {
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
-
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Key);
 
@@ -38,7 +38,7 @@ namespace NuGetGallery
                 .Map(c => c
                     .ToTable("UserRoles")
                     .MapLeftKey("UserKey")
-                    .MapRightKey("RoleKey")); ;
+                    .MapRightKey("RoleKey"));
 
             modelBuilder.Entity<Role>()
                 .HasKey(u => u.Key);
@@ -102,19 +102,38 @@ namespace NuGetGallery
 
             modelBuilder.Entity<PackageOwnerRequest>()
                 .HasKey(por => por.Key);
+
+            modelBuilder.Entity<CuratedFeed>()
+               .HasKey(cf => cf.Key);
+
+            modelBuilder.Entity<CuratedFeed>()
+                .HasMany<CuratedPackage>(cf => cf.Packages)
+                .WithRequired(cp => cp.CuratedFeed)
+                .HasForeignKey(cp => cp.CuratedFeedKey);
+
+            modelBuilder.Entity<CuratedFeed>()
+                .HasMany<User>(cf => cf.Managers)
+                .WithMany()
+                .Map(c => c
+                    .ToTable("CuratedFeedManagers")
+                    .MapLeftKey("CuratedFeedKey")
+                    .MapRightKey("UserKey"));
+
+            modelBuilder.Entity<CuratedPackage>()
+                .HasKey(cp => cp.Key);
+
+            modelBuilder.Entity<CuratedPackage>()
+                .HasRequired(cp => cp.PackageRegistration);
         }
 
+        public IDbSet<CuratedFeed> CuratedFeeds { get; set; }
+        public IDbSet<CuratedPackage> CuratedPackages { get; set; }
+        public IDbSet<PackageRegistration> PackageRegistrations { get; set; }
+        public IDbSet<User> Users { get; set; } 
         public IDbSet<WorkItem> WorkItems
         {
             get;
             set;
-        }
-
-        private static DbConnection GetConnection(string connectionStringName)
-        {
-            var setting = ConfigurationManager.ConnectionStrings[connectionStringName];
-            var connection = new SqlConnection(setting.ConnectionString);
-            return ProfiledDbConnection.Get(connection);
         }
     }
 }
