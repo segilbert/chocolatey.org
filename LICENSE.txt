@@ -1,0 +1,32 @@
+Chocolatey.org
+Copyright (C) 2011- Present RealDimensions Software, LLC ("RDS")
+===================================================================
+Basically this boils down to this, if you are a business and want to use the software this pertains to internally, you need to get a commercial license to do so.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+===================================================================
+Packages/User Content/Client License Exception
+===================================================================
+The chocolatey packages, known as files that end in "nupkg" (i.e. "packages")  that are included with the server will retain their licenses and be excluded from the reach of this license.
+
+The clients that access the server, i.e. the chocolatey command line client, are also excluded from the reach of this license. 
+
+The user content pertaining strictly to that user is remains the property of the user. When they put it on chocolatey.org, they are granting chocolatey.org use of that information. When they no longer want it there anymore, they are permitted to delete it.
+
+===================================================================
+Commercial Licensing
+===================================================================
+Chocolatey.org is also offered under commercial licenses.
+You can learn more about this option by contacting FCS at http://ferventcoder.com
