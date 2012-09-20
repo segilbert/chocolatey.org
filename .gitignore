@@ -9,3 +9,6 @@ App_Data
 _AzurePackage
 *.sln.docstates
 *.bak
+
+.DS_Store
+Thumbs.db
