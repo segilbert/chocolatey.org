@@ -24,7 +24,8 @@
         public ActionResult Feed(int? page, int? pageSize)
         {
             var siteRoot = EnsureTrailingSlash(Configuration.GetSiteRoot(useHttps:false));
-            IQueryable<Package> packageVersions = packageSvc.GetLatestPackageVersions(allowPrerelease: false)
+            IQueryable<Package> packageVersions = packageSvc
+                .GetPackagesForListing(includePrerelease: false)
                 .OrderByDescending(p => p.Published);
 
             SyndicationFeed feed = new SyndicationFeed("Chocolatey", "Chocolatey Packages", new Uri(siteRoot));

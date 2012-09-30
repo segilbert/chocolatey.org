@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Web;
-using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace NuGetGallery
 {
     public class Configuration : IConfiguration
     {
-        private static readonly Dictionary<string, Lazy<object>> configThunks = new Dictionary<string, Lazy<object>>();
+        private static readonly Dictionary<string, Lazy<object>> _configThunks = new Dictionary<string, Lazy<object>>();
         private readonly Lazy<string> _httpSiteRootThunk;
-        private readonly Lazy<string> _httpsSiteRootThunk; 
-        static readonly Lazy<bool> runningInAzure = new Lazy<bool>(RunningInAzure);
+        private readonly Lazy<string> _httpsSiteRootThunk;
 
         public Configuration()
         {
@@ -19,62 +17,32 @@ namespace NuGetGallery
             _httpsSiteRootThunk = new Lazy<string>(GetHttpsSiteRoot);
         }
 
-        public static string ReadAppSetting(string key)
+        public static string ReadAppSettings(string key)
         {
-            var value = ConfigurationManager.AppSettings[key];
-            return value;
+            return ReadAppSettings(key, value => value);
         }
 
-        public static string ReadAzureSetting(string key)
-        {
-            return RoleEnvironment.GetConfigurationSettingValue(key);
-        }
-
-        public static string ReadConfiguration(string key)
-        {
-            return ReadConfiguration<string>(
-                key,
-                value => value);
-        }
-
-        public static T ReadConfiguration<T>(
+        public static T ReadAppSettings<T>(
             string key,
             Func<string, T> valueThunk)
         {
-            if (!configThunks.ContainsKey(key))
-                configThunks.Add(key, new Lazy<object>(() =>
+            if (!_configThunks.ContainsKey(key))
+                _configThunks.Add(key, new Lazy<object>(() =>
                 {
-                    string value = null;
-
-                    if (runningInAzure.Value)
-                        value = ReadAzureSetting(key);
-                    
-                    if (value == null)
-                        value = ReadAppSetting(key);
-                    
+                    var value = ConfigurationManager.AppSettings[string.Format("Gallery:{0}", key)];
+                    if (string.IsNullOrWhiteSpace(value))
+                        value = null;
                     return valueThunk(value);
                 }));
 
-            return (T)configThunks[key].Value;
-        }
-
-        static bool RunningInAzure()
-        {
-            try
-            {
-                return RoleEnvironment.IsAvailable;
-            }
-            catch (RoleEnvironmentException) { }
-            catch (TypeInitializationException) { }
-
-            return false;
+            return (T)_configThunks[key].Value;
         }
 
         public string AzureStorageAccessKey
         {
             get
             {
-                return ReadConfiguration("AzureStorageAccessKey");
+                return ReadAppSettings("AzureStorageAccessKey");
             }
         }
 
@@ -82,7 +50,7 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration("AzureStorageAccountName");
+                return ReadAppSettings("AzureStorageAccountName");
             }
         }
 
@@ -90,7 +58,7 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration("AzureStorageBlobUrl");
+                return ReadAppSettings("AzureStorageBlobUrl");
             }
         }
 
@@ -98,9 +66,9 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration<string>(
+                return ReadAppSettings(
                     "FileStorageDirectory",
-                    (value) => value ?? HttpContext.Current.Server.MapPath("~/App_Data/Files"));
+                    value => value ?? HttpContext.Current.Server.MapPath("~/App_Data/Files"));
             }
         }
 
@@ -108,17 +76,25 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration<PackageStoreType>(
+                return ReadAppSettings(
                     "PackageStoreType",
-                    (value) => (PackageStoreType)Enum.Parse(typeof(PackageStoreType), value ?? PackageStoreType.NotSpecified.ToString()));
+                    value => (PackageStoreType)Enum.Parse(typeof(PackageStoreType), value ?? PackageStoreType.NotSpecified.ToString()));
             }
         }
 
+        public string AzureCdnHost
+        {
+            get
+            {
+                return ReadAppSettings("AzureCdnHost");
+            }
+        }
+		
         public string S3Bucket
         {
             get
             {
-                return ReadConfiguration<string>(
+                return ReadAppSettings<string>(
                    "S3Bucket",
                    (value) => value ?? string.Empty);
             }
@@ -128,7 +104,7 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration<string>(
+                return ReadAppSettings<string>(
                    "S3AccessKey",
                    (value) => value ?? string.Empty);
             }
@@ -138,7 +114,7 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration<string>(
+                return ReadAppSettings<string>(
                   "S3SecretKey",
                   (value) => value ?? string.Empty);
             }
@@ -148,7 +124,7 @@ namespace NuGetGallery
         {
             get
             {
-                return ReadConfiguration<bool>(
+                return ReadAppSettings<bool>(
                  "SmtpEnableSsl",
                  (value) => bool.Parse(value ?? bool.TrueString));
             }
@@ -156,7 +132,7 @@ namespace NuGetGallery
 
         protected virtual string GetConfiguredSiteRoot()
         {
-            return ConfigurationManager.AppSettings["Configuration:SiteRoot"];
+            return ReadAppSettings("SiteRoot");
         }
 
         protected virtual HttpRequestBase GetCurrentRequest()

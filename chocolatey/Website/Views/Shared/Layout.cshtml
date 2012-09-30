@@ -5,47 +5,50 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Chocolatey Gallery @ViewBag.TitleAppend</title>
+    <title>NuGet Gallery @(string.IsNullOrWhiteSpace(ViewBag.Title) ? "" : "| " + ViewBag.Title)
+    </title>
     <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/chocolatey.css")" rel="stylesheet" />
     <link href="@Url.Content("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
 
     <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")"></script>
 
     @MiniProfiler.RenderIncludes()
-    @Microsoft.Web.Helpers.Analytics.GetGoogleHtml("UA-2743882-12")
+    @ViewHelpers.AnalyticsScript()
+    @* @Microsoft.Web.Helpers.Analytics.GetGoogleHtml("UA-2743882-12")*@
     @RenderSection("TopScripts", required: false)
 </head>
 <body>
-    <div id="content-wraper">
+    <div id="content-wrapper">
         <header class="main">
-                <div id="logo"><a href="@Url.Home()">Chocolatey Gallery</a></div>
-                @Html.Partial(MVC.Shared.Views.UserDisplay)
-            </header>
+            <div id="logo">
+                <a href="@Url.Home()">Chocolatey Gallery</a></div>
+            @Html.Partial(MVC.Shared.Views.UserDisplay)
+        </header>
         <nav class="main">
-                <ul id="menu">
-                    @{
-                        var homeClass = ViewBag.Tab == "Home" ? "current" : "";
-                        var packagesClass = ViewBag.Tab == "Packages" ? "current" : "";
-                        var uploadClass = ViewBag.Tab == "Upload" ? "current" : "";
-                    }
-                    <li class="@homeClass"><a href="@Url.Home()">Home</a></li>
-                    <li class="@packagesClass"><a href="@Url.PackageList()">Packages</a></li>
-                    <li class="@uploadClass"><a href="@Url.UploadPackage()" class="upload">Upload Package</a></li>
-                    <li><a href="https://github.com/chocolatey/chocolatey/wiki">Documentation*</a></li>
-                    <li><a href="https://github.com/chocolatey/chocolatey">Project*</a></li>
-                    <li><a href="http://groups.google.com/group/chocolatey">Forum*</a></li>
-                    <li><a href="http://cafepress.com/chocolatey">Shop*</a></li>
-                </ul>
-                <div id="searchBox">
-                    <form action="@Url.PackageList()" method="get">
-                        <input name="q" id="searchBoxInput" placeholder="Search Packages" value="@(String.IsNullOrEmpty(ViewBag.SearchTerm) ? "" : ViewBag.SearchTerm)" />
-                        <input id="searchBoxSubmit" type="submit" value=" " />
-                    </form>
-                </div>
-            </nav>
-        <div id="body">
+            <ul id="menu">
+                @{
+                    var homeClass = ViewBag.Tab == "Home" ? "current" : "";
+                    var packagesClass = ViewBag.Tab == "Packages" ? "current" : "";
+                    var uploadClass = ViewBag.Tab == "Upload" ? "current" : "";
+                }
+                <li class="@homeClass"><a href="@Url.Home()">Home</a></li>
+                <li class="@packagesClass"><a href="@Url.PackageList()">Packages</a></li>
+                <li class="@uploadClass"><a href="@Url.UploadPackage()" class="upload">Upload Package</a></li>
+                <li><a href="https://github.com/chocolatey/chocolatey/wiki">Documentation*</a></li>
+                <li><a href="https://github.com/chocolatey/chocolatey">Project*</a></li>
+                <li><a href="http://groups.google.com/group/chocolatey">Forum*</a></li>
+                <li><a href="http://cafepress.com/chocolatey">Shop*</a></li>
+            </ul>
+            <div id="searchBox" role="search">
+                <form action="@Url.PackageList()" method="get">
+                <input name="q" id="searchBoxInput" placeholder="Search Packages" value="@(String.IsNullOrEmpty(ViewBag.SearchTerm) ? "" : ViewBag.SearchTerm)" />
+                <input id="searchBoxSubmit" type="submit" value=" " />
+                </form>
+            </div>
+        </nav>
+        <div id="body" role="main">
             @if (TempData.ContainsKey("Message"))
             {
                 <p class="message">@TempData["Message"]</p>
@@ -55,52 +58,52 @@
     </div>
     <div id="layout-footer" class="group">
         <footer id="footer">
-                <ul class="recommended">
-                    <li>
-                        <a href="https://github.com/chocolatey/chocolatey/wiki">Overview</a>
-                        <p>Where did Chocolatey get it's name? What exactly is chocolatey anyway?</p>
-                    </li>
-                    <li>
-                        <a href="http://groups.google.com/group/chocolatey">Discussion</a>
-                        <p>Find a possible bug? Got a feature request? Get involved in the discussion!</p>
-                    </li>
-                    <li>
-                        <a href="http://bit.ly/chocolateyVideo">Video</a>
-                        <p>Want to see Chocolatey in action?</p>
-                    </li>
-                    <li>
-                        <a href="https://github.com/chocolatey/chocolatey/wiki/ChocolateyFAQs">FAQ</a>
-                        <p>Read the Frequently Asked Questions about Chocolatey.</p>
-                    </li>
-                </ul>  
-                <div class="license">
+            <ul class="recommended">
+                <li><a href="https://github.com/chocolatey/chocolatey/wiki">Overview</a>
                     <p>
-                        <a href="https://twitter.com/chocolateynuget" class="twitter-follow-button" data-show-count="true" data-width="250px" data-lang="en">Follow @@chocolateynuget</a>
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="chocolatey" data-lang="en">Tweet</a> 
-                        <script type="text/javascript">
-                            !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");
-                        </script>
-                        <br />
-                        &copy; @DateTime.UtcNow.Year FerventCoder Software.
-                    </p>
-                    @ViewHelpers.ReleaseTag() 
-                </div>
-                <div  class="supporters">Site made possible by the following sponsors:
-                    <ul class="supporters">
-                        <li></li>
-                        <li><a href="http://codingutopia.com">RealDimensions</a>
-                            <a id="realdimensions-logo" href="http://codingutopia.com"></a>
-                        </li>
-                        <li>
-                            <a href="http://appharbor.com">AppHarbor</a>
-                            <a id="appharbor-logo" href="http://appharbor.com"></a>
-                        </li>
-                        <li></li>
-                    </ul>
-                </div>
-            </footer>
-    </div>
+                        Where did Chocolatey get it's name? What exactly is chocolatey anyway?</p>
+                </li>
+                <li><a href="http://groups.google.com/group/chocolatey">Discussion</a>
+                    <p>
+                        Find a possible bug? Got a feature request? Get involved in the discussion!</p>
+                </li>
+                <li><a href="http://bit.ly/chocolateyVideo">Video</a>
+                    <p>
+                        Want to see Chocolatey in action?</p>
+                </li>
+                <li><a href="https://github.com/chocolatey/chocolatey/wiki/ChocolateyFAQs">FAQ</a>
+                    <p>
+                        Read the Frequently Asked Questions about Chocolatey.</p>
+                </li>
+            </ul>
+            <div class="license">
+                <p>
+                    <a href="https://twitter.com/chocolateynuget" class="twitter-follow-button" data-show-count="true"
+                        data-width="250px" data-lang="en">Follow @@chocolateynuget</a> <a href="https://twitter.com/share"
+                            class="twitter-share-button" data-hashtags="chocolatey" data-lang="en">Tweet</a>
 
+                    <script type="text/javascript">
+                        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");
+                    </script>
+
+                    <br />
+                    &copy; @DateTime.UtcNow.Year RealDimensions Software, LLC.
+                </p>
+                @ViewHelpers.ReleaseTag()
+            </div>
+            <div class="supporters">
+                Site made possible by the following sponsors:
+                <ul class="supporters">
+                    <li></li>
+                    <li><a href="http://codingutopia.com">RealDimensions</a> <a id="realdimensions-logo"
+                        href="http://codingutopia.com"></a></li>
+                    <li><a href="http://appharbor.com">AppHarbor</a> <a id="appharbor-logo" href="http://appharbor.com">
+                    </a></li>
+                    <li></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
     @RenderSection("BottomScripts", required: false)
 
     <script type="text/javascript">        var switchTo5x = true;</script>

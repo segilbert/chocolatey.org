@@ -89,6 +89,10 @@ namespace NuGetGallery
                 .To<LuceneIndexingService>()
                 .InRequestScope();
 
+            Bind<INuGetExeDownloaderService>()
+                .To<NuGetExeDownloaderService>()
+                .InRequestScope();
+
             Lazy<IMailSender> mailSenderThunk = new Lazy<IMailSender>(() =>
             {
                 var settings = Kernel.Get<GallerySetting>();
@@ -173,10 +177,11 @@ namespace NuGetGallery
             Bind<IUploadFileService>()
                 .To<UploadFileService>();
 
-
             // todo: bind all package curators by convention
             Bind<IAutomaticPackageCurator>()
                 .To<WebMatrixPackageCurator>();
+            Bind<IAutomaticPackageCurator>()
+                .To<Windows8PackageCurator>();
 
             // todo: bind all commands by convention
             Bind<IAutomaticallyCuratePackageCommand>()
@@ -210,6 +215,16 @@ namespace NuGetGallery
                 .InRequestScope();
             Bind<IUserByUsernameQuery>()
                 .To<UserByUsernameQuery>()
+                .InRequestScope();
+
+            Bind<IAggregateStatsService>()
+                .To<AggregateStatsService>()
+                .InRequestScope();
+            Bind<IPackageIdsQuery>()
+                .To<PackageIdsQuery>()
+                .InRequestScope();
+            Bind<IPackageVersionsQuery>()
+                .To<PackageVersionsQuery>()
                 .InRequestScope();
         }
     }

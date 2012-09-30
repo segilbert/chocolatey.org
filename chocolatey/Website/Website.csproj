@@ -73,6 +73,16 @@
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Data.Edm">
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.0.1\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.0.1\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Aliases>odata</Aliases>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData.Contrib">
+      <HintPath>..\..\packages\Microsoft.Data.OData.Contrib.5.0.1.50822\lib\net40\Microsoft.Data.OData.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Helpers">
       <HintPath>..\..\packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
     </Reference>
@@ -97,14 +107,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MvcHaack.Ajax.1.1\lib\net40\MvcHaack.Ajax.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="NuGet.Core">
-      <HintPath>..\..\packages\NuGet.Core.1.6.1\lib\net40-Client\NuGet.Core.dll</HintPath>
+    <Reference Include="NuGet.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Nuget.Core.2.1.0-alpha001\lib\net40-Client\NuGet.Core.dll</HintPath>
     </Reference>
     <Reference Include="ODataNullPropagationVisitor">
       <HintPath>..\..\packages\ODataNullPropagationVisitor.0.5.4237.2641\lib\net40\ODataNullPropagationVisitor.dll</HintPath>
@@ -125,25 +139,29 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Services" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Spatial">
+      <HintPath>..\..\packages\System.Spatial.5.0.1\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\AspNetMvc.3.0.20105.0\lib\net40\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetMvc.3.0.20105.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\AspNetRazor.Core.1.0.20105.407\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\AspNetWebPages.Core.1.0.20105.407\lib\net40\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -174,9 +192,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
     </Reference>
-    <Reference Include="WebBackgrounder, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\WebBackgrounder.0.1\lib\net40\WebBackgrounder.dll</HintPath>
+    <Reference Include="WebBackgrounder">
+      <HintPath>..\..\packages\WebBackgrounder.0.2.0\lib\net40\WebBackgrounder.dll</HintPath>
     </Reference>
     <Reference Include="WebBackgrounder.EntityFramework, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -214,6 +231,23 @@
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Controllers\CuratedPackagesController.cs">
       <Link>Controllers\CuratedPackagesController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\CuratedFeedsController.generated.cs">
+      <Link>CuratedFeedsController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\CuratedPackagesController.generated.cs">
+      <Link>CuratedPackagesController.generated.cs</Link>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\CountInterceptor.cs">
+      <Link>DataServices\CountInterceptor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\DisregardODataInterceptor.cs">
+      <Link>DataServices\DisregardODataInterceptor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\DataServices\ODataRemoveVersionSorter.cs">
+      <Link>DataServices\ODataRemoveVersionSorter.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\DataServices\V1FeedPackage.cs">
       <Link>DataServices\V1FeedPackage.cs</Link>
@@ -257,9 +291,8 @@
     <Compile Include="..\..\nugetgallery\Website\Entities\GallerySetting.cs">
       <Link>Entities\GallerySetting.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\HelpersController.generated.cs">
-      <Link>HelpersController.generated.cs</Link>
-      <DependentUpon>T4MVC.tt</DependentUpon>
+    <Compile Include="..\..\nugetgallery\Website\Entities\PackageFramework.cs">
+      <Link>Entities\PackageFramework.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\HintAttribute.cs">
       <Link>Infrastructure\HintAttribute.cs</Link>
@@ -272,6 +305,9 @@
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\HttpStatusCodeWithBodyResult.cs">
       <Link>Infrastructure\HttpStatusCodeWithBodyResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Infrastructure\JsonNetResult.cs">
+      <Link>Infrastructure\JsonNetResult.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Infrastructure\Lucene\LuceneFileSystem.cs">
       <Link>Infrastructure\Lucene\LuceneFileSystem.cs</Link>
@@ -406,14 +442,86 @@
       <Link>Migrations\201203182132476_CuratedPackages.designer.cs</Link>
       <DependentUpon>201203182132476_CuratedPackages.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201205172325056_FrameworkName.cs">
+      <Link>Migrations\201205172325056_FrameworkName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201205172325056_FrameworkName.designer.cs">
+      <Link>Migrations\201205172325056_FrameworkName.designer.cs</Link>
+      <DependentUpon>201205172325056_FrameworkName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206131919241_AddTargetFxToDependencies.cs">
+      <Link>Migrations\201206131919241_AddTargetFxToDependencies.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206131919241_AddTargetFxToDependencies.designer.cs">
+      <Link>Migrations\201206131919241_AddTargetFxToDependencies.designer.cs</Link>
+      <DependentUpon>201206131919241_AddTargetFxToDependencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206250141447_ExecuteELMAHSql.cs">
+      <Link>Migrations\201206250141447_ExecuteELMAHSql.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201206250141447_ExecuteELMAHSql.designer.cs">
+      <Link>Migrations\201206250141447_ExecuteELMAHSql.designer.cs</Link>
+      <DependentUpon>201206250141447_ExecuteELMAHSql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208171904586_Language.cs">
+      <Link>Migrations\201208171904586_Language.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208171904586_Language.designer.cs">
+      <Link>Migrations\201208171904586_Language.designer.cs</Link>
+      <DependentUpon>201208171904586_Language.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222206329_ColumnLengthOfPackageTable.cs">
+      <Link>Migrations\201208222206329_ColumnLengthOfPackageTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222206329_ColumnLengthOfPackageTable.designer.cs">
+      <Link>Migrations\201208222206329_ColumnLengthOfPackageTable.designer.cs</Link>
+      <DependentUpon>201208222206329_ColumnLengthOfPackageTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222227425_PackageIndexes.cs">
+      <Link>Migrations\201208222227425_PackageIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208222227425_PackageIndexes.designer.cs">
+      <Link>Migrations\201208222227425_PackageIndexes.designer.cs</Link>
+      <DependentUpon>201208222227425_PackageIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208230640333_PackageSortingIndexes.cs">
+      <Link>Migrations\201208230640333_PackageSortingIndexes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208230640333_PackageSortingIndexes.designer.cs">
+      <Link>Migrations\201208230640333_PackageSortingIndexes.designer.cs</Link>
+      <DependentUpon>201208230640333_PackageSortingIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208302051344_CreateAggregateStatisticsSP.cs">
+      <Link>Migrations\201208302051344_CreateAggregateStatisticsSP.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201208302051344_CreateAggregateStatisticsSP.designer.cs">
+      <Link>Migrations\201208302051344_CreateAggregateStatisticsSP.designer.cs</Link>
+      <DependentUpon>201208302051344_CreateAggregateStatisticsSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.cs">
+      <Link>Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.designer.cs">
+      <Link>Migrations\201209181743161_AggregateStatsSp_ReduxLastUpdate.designer.cs</Link>
+      <DependentUpon>201209181743161_AggregateStatsSp_ReduxLastUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Migrations\SqlResourceMigration.cs">
+      <Link>Migrations\SqlResourceMigration.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\PackageCurators\AutomaticPackageCurator.cs">
       <Link>PackageCurators\AutomaticPackageCurator.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\PackageCurators\IAutomaticPackageCurator.cs">
       <Link>PackageCurators\IAutomaticPackageCurator.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\TagBasedPackageCurator.cs">
+      <Link>PackageCurators\TagBasedPackageCurator.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\PackageCurators\WebMatrixPackageCurator.cs">
       <Link>PackageCurators\WebMatrixPackageCurator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\PackageCurators\Windows8PackageCurator.cs">
+      <Link>PackageCurators\Windows8PackageCurator.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\PackagesController.generated.cs">
       <Link>PackagesController.generated.cs</Link>
@@ -428,11 +536,17 @@
     <Compile Include="..\..\nugetgallery\Website\Queries\CuratedFeedsByManagerKeyQuery.cs">
       <Link>Queries\CuratedFeedsByManagerKeyQuery.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageIdsQuery.cs">
+      <Link>Queries\PackageIdsQuery.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Queries\PackageRegistrationByIdQuery.cs">
       <Link>Queries\PackageRegistrationByIdQuery.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Queries\PackageRegistrationByKeyQuery.cs">
       <Link>Queries\PackageRegistrationByKeyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Queries\PackageVersionsQuery.cs">
+      <Link>Queries\PackageVersionsQuery.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Queries\UserByUSernameQuery.cs">
       <Link>Queries\UserByUSernameQuery.cs</Link>
@@ -442,6 +556,9 @@
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\RequestModels\ModifyCuratedPackageRequest.cs">
       <Link>RequestModels\ModifyCuratedPackageRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\AggregateStatsService.cs">
+      <Link>Services\AggregateStatsService.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\CloudBlobClientWrapper.cs">
       <Link>Services\CloudBlobClientWrapper.cs</Link>
@@ -458,6 +575,9 @@
     <Compile Include="..\..\nugetgallery\Website\Services\FileSystemFileStorageService.cs">
       <Link>Services\FileSystemFileStorageService.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\IAggregateStatsService.cs">
+      <Link>Services\IAggregateStatsService.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\ICloudBlob.cs">
       <Link>Services\ICloudBlob.cs</Link>
     </Compile>
@@ -473,8 +593,14 @@
     <Compile Include="..\..\nugetgallery\Website\Services\IIndexingService.cs">
       <Link>Services\IIndexingService.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\INuGetExeDownloaderService.cs">
+      <Link>Services\INuGetExeDownloaderService.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\ISearchService.cs">
       <Link>Services\ISearchService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\NuGetExeDownloaderService.cs">
+      <Link>Services\NuGetExeDownloaderService.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\PackageSearchResults.cs">
       <Link>Services\PackageSearchResults.cs</Link>
@@ -488,6 +614,9 @@
     <Compile Include="..\..\nugetgallery\Website\RequireRemoteHttpsAttribute.cs">
       <Link>RequireRemoteHttpsAttribute.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\Services\SearchFilter.cs">
+      <Link>Services\SearchFilter.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Services\TestableStorageClientException.cs">
       <Link>Services\TestableStorageClientException.cs</Link>
     </Compile>
@@ -497,8 +626,14 @@
     <Compile Include="..\..\nugetgallery\Website\ViewModels\AccountViewModel.cs">
       <Link>ViewModels\AccountViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\AggregateStats.cs">
+      <Link>ViewModels\AggregateStats.cs</Link>
+    </Compile>
     <Compile Include="..\..\nugetgallery\Website\ViewModels\CuratedFeedViewModel.cs">
       <Link>ViewModels\CuratedFeedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\nugetgallery\Website\ViewModels\DependencySetsViewModel.cs">
+      <Link>ViewModels\DependencySetsViewModel.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\ViewModels\EditProfileViewModel.cs">
       <Link>ViewModels\EditProfileViewModel.cs</Link>
@@ -876,9 +1011,6 @@
     <Compile Include="..\..\nugetgallery\Website\ViewModels\ManagePackageOwnersViewModel.cs">
       <Link>ViewModels\ManagePackageOwnersViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\ViewModels\DependencyViewModel.cs">
-      <Link>ViewModels\DependencyViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\ViewModels\IPackageVersionModel.cs">
       <Link>ViewModels\IPackageVersionModel.cs</Link>
     </Compile>
@@ -1168,8 +1300,11 @@
     <Content Include="..\..\nugetgallery\Website\DynamicData\Site.css">
       <Link>DynamicData\Site.css</Link>
     </Content>
-    <Content Include="..\..\nugetgallery\Website\Errors\Error.html">
-      <Link>Errors\Error.html</Link>
+    <Content Include="..\..\nugetgallery\Website\Infrastructure\AggregateStatistics.sql">
+      <Link>Infrastructure\AggregateStatistics.sql</Link>
+    </Content>
+    <Content Include="..\..\nugetgallery\Website\Infrastructure\Elmah.SqlServer.sql">
+      <Link>Infrastructure\Elmah.SqlServer.sql</Link>
     </Content>
     <Content Include="Content\chocolatey.css" />
     <Content Include="Content\Images\AH_Logo_vertical.png" />
@@ -1211,18 +1346,10 @@
     <Content Include="Content\Images\xmark.png" />
     <Content Include="Content\Images\YourPackage.png" />
     <Content Include="Content\Site.css" />
-    <Content Include="..\..\nugetgallery\Website\Errors\404.cshtml">
-      <Link>Errors\404.cshtml</Link>
-    </Content>
-    <Content Include="..\..\nugetgallery\Website\Errors\ErrorLayout.cshtml">
-      <Link>Errors\ErrorLayout.cshtml</Link>
-    </Content>
-    <Content Include="..\..\nugetgallery\Website\Errors\_PageStart.cshtml">
-      <Link>Errors\_PageStart.cshtml</Link>
-    </Content>
     <Content Include="..\..\nugetgallery\Website\api\Web.config">
       <Link>api\Web.config</Link>
     </Content>
+    <Content Include="Errors\Error.html" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
@@ -1233,6 +1360,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-latest.js" />
     <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Scripts\stats.js" />
     <Content Include="Scripts\ZeroClipboard.js" />
     <Content Include="Scripts\ZeroClipboard.swf" />
     <Content Include="Views\Pages\Home.cshtml">
@@ -1310,10 +1438,20 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\CuratedFeeds\CuratedFeed.cshtml" />
     <Content Include="Views\CuratedPackages\CreateCuratedPackageForm.cshtml" />
+    <Content Include="Errors\404.cshtml" />
+    <Content Include="Errors\ErrorLayout.cshtml" />
+    <Content Include="Errors\_PageStart.cshtml" />
+    <Content Include="Views\Packages\_PackageDependencies.cshtml" />
+    <Content Include="Web.ForbiddenHandlers.config" />
   </ItemGroup>
   <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

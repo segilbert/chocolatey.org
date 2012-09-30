@@ -73,13 +73,34 @@ namespace NuGetGallery
             }
         }
 
+        public bool FileExists(string folderName,string fileName)
+        {
+            //folder ignored - packages stored on top level of S3 bucket
+            if (String.IsNullOrWhiteSpace(folderName)) throw new ArgumentNullException("folderName");
+            if (String.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("fileName");
+
+            ListObjectsRequest request = new ListObjectsRequest();
+            request.WithBucketName(clientContext.BucketName);
+            request.WithPrefix(fileName);
+            
+            using (AmazonS3 client = this.clientContext.CreateInstance())
+            {
+                ListObjectsResponse response = WrapRequestInErrorHandler(() => client.ListObjects(request));
+                var count = response.S3Objects.Count;
+                if (count == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public Stream GetFile(string folderName, string fileName)
         {
             //folder ignored - packages stored on top level of S3 bucket
-            if (String.IsNullOrWhiteSpace(folderName))
-                throw new ArgumentNullException("folderName");
-            if (String.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException("fileName");
+            if (String.IsNullOrWhiteSpace(folderName)) throw new ArgumentNullException("folderName");
+            if (String.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("fileName");
 
             GetObjectRequest request = new GetObjectRequest();
             request.WithBucketName(clientContext.BucketName);
@@ -92,8 +113,7 @@ namespace NuGetGallery
                 {
                     S3Response response = WrapRequestInErrorHandler(() => client.GetObject(request));
 
-                    if (response != null)
-                        return response.ResponseStream;
+                    if (response != null) return response.ResponseStream;
                 }
                 catch (Exception)
                 {
@@ -107,12 +127,9 @@ namespace NuGetGallery
         public void SaveFile(string folderName, string fileName, Stream fileStream)
         {
             //folder ignored - packages stored on top level of S3 bucket
-            if (String.IsNullOrWhiteSpace(folderName))
-                throw new ArgumentNullException("folderName");
-            if (String.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException("fileName");
-            if (fileStream == null)
-                throw new ArgumentNullException("fileStream");
+            if (String.IsNullOrWhiteSpace(folderName)) throw new ArgumentNullException("folderName");
+            if (String.IsNullOrWhiteSpace(fileName)) throw new ArgumentNullException("fileName");
+            if (fileStream == null) throw new ArgumentNullException("fileStream");
 
 
             PutObjectRequest request = new PutObjectRequest();

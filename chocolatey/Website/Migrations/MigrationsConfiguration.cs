@@ -12,13 +12,10 @@ namespace NuGetGallery.Migrations
         public MigrationsConfiguration()
         {
             AutomaticMigrationsEnabled = false;
-            //SetCodeGenerator<CSharpMigrationCodeGenerator>();
-            //AddSqlGenerator<SqlConnection, SqlServerMigrationSqlGenerator>();
         }
 
         protected override void Seed(EntitiesContext context)
         {
-       
             var roles = context.Set<Role>();
             if (!roles.Any(x => x.Name == Constants.AdminRoleName))
             {
@@ -54,6 +51,4 @@ namespace NuGetGallery.Migrations
             }
         }
     }
-
-  
 }
