@@ -1,5 +1,6 @@
 ﻿ @* Generator: MvcHelper Namespace: NuGetGallery*@
 
+@using System.Configuration
 @using System.Linq;
 @using System.Collections;
 @using System.Web.Mvc;
@@ -74,22 +75,30 @@
 }
 
 @helper GravatarImage(string email, string username, int size) {
-    <text>
-    @Gravatar.GetHtml(email, size, "retro", GravatarRating.G, attributes: new { width = size, height = size, title = username, @class = "owner-image" })
-    </text>
+    var gravatarHtml = Gravatar.GetHtml(email, size, "retro", GravatarRating.G, attributes: new { width = size, height = size, title = username, @class = "owner-image" });
+    if (gravatarHtml != null && Request.IsSecureConnection)
+    {
+        gravatarHtml = new HtmlString(gravatarHtml.ToHtmlString().Replace("http://www.gravatar.com/", "https://secure.gravatar.com/"));
+    }
+    @gravatarHtml
 }
 
 @helper ReleaseTag(){
-    string name = System.Configuration.ConfigurationManager.AppSettings["Gallery:ReleaseName"];
     string sha = System.Configuration.ConfigurationManager.AppSettings["Gallery:ReleaseSha"];
     string branch = System.Configuration.ConfigurationManager.AppSettings["Gallery:ReleaseBranch"];
     string time = System.Configuration.ConfigurationManager.AppSettings["Gallery:ReleaseTime"];
-    if(!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(sha) && !String.IsNullOrEmpty(branch) && !String.IsNullOrEmpty(time)){
+    if(!String.IsNullOrEmpty(sha) && !String.IsNullOrEmpty(branch) && !String.IsNullOrEmpty(time)){
     <p id="releaseTag">
-        @name - 
         Deployed from <a href="https://github.com/NuGet/NuGetGallery/commit/@sha" title="View the commit.">@sha.Substring(0,10)</a>
         on <a href="https://github.com/NuGet/NuGetGallery/branches/@branch" title="View the branch.">@branch</a> 
         at @time.
     </p>
+    }
+}
+
+@helper AnalyticsScript() {
+    var propertyId = ConfigurationManager.AppSettings["Gallery:GoogleAnalyticsPropertyId"];
+    if (propertyId != null) {
+        @Analytics.GetGoogleHtml(propertyId);
     }
 }

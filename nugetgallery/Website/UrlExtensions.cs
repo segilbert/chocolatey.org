@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using System;
 
 namespace NuGetGallery
 {
@@ -16,9 +15,9 @@ namespace NuGetGallery
             return url.RouteUrl(RouteName.Home);
         }
 
-        public static string PackageList(this UrlHelper url, int page, string sortOrder, string searchTerm)
+        public static string PackageList(this UrlHelper url, int page, string sortOrder, string searchTerm, bool prerelease)
         {
-            return url.Action(MVC.Packages.ListPackages(searchTerm, sortOrder, page));
+            return url.Action(MVC.Packages.ListPackages(searchTerm, sortOrder, page, prerelease));
         }
 
         public static string PackageList(this UrlHelper url)
@@ -54,7 +53,8 @@ namespace NuGetGallery
         public static string PackageDownload(this UrlHelper url, int feedVersion, string id, string version)
         {
             string routeName = "v" + feedVersion + RouteName.DownloadPackage;
-            return url.RouteUrl(routeName, new { Id = id, Version = version }, protocol: "http");
+            string protocol = url.RequestContext.HttpContext.Request.IsSecureConnection ? "https" : "http";
+            return url.RouteUrl(routeName, new { Id = id, Version = version }, protocol: protocol);
         }
 
         public static string LogOn(this UrlHelper url)

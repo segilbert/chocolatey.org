@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Versioning;
 using System.Transactions;
 using NuGet;
 using StackExchange.Profiling;
@@ -111,7 +112,7 @@ namespace NuGetGallery
                                                             .Include(p => p.Authors)
                                                             .Include(p => p.PackageRegistration)
                                                             .Where(p => (p.PackageRegistration.Id == id));
-            if (String.IsNullOrEmpty(version) && !allowPrerelease) 
+            if (String.IsNullOrEmpty(version) && !allowPrerelease)
             {
                 // If there's a specific version given, don't bother filtering by prerelease. You could be asking for a prerelease package.
                 packagesQuery = packagesQuery.Where(p => !p.IsPrerelease);
@@ -146,19 +147,15 @@ namespace NuGetGallery
             return package;
         }
 
-        public IQueryable<Package> GetLatestPackageVersions(bool allowPrerelease)
+        public IQueryable<Package> GetPackagesForListing(bool includePrerelease)
         {
             var packages = packageRepo.GetAll()
                 .Include(x => x.PackageRegistration)
-                .Include(x => x.Authors)
-                .Include(x => x.PackageRegistration.Owners);
+                .Include(x => x.PackageRegistration.Owners)
+                .Where(p => p.Listed);
 
-            if (allowPrerelease)
-            {
-                // Since we use this for listing, only show prerelease versions of a package if it does not have stable version 
-                return packages.Where(p => p.IsLatestStable || (p.IsLatest && !p.PackageRegistration.Packages.Any(p2 => p2.IsLatestStable)));
-            }
-            return packages.Where(x => x.IsLatestStable);
+            return includePrerelease ? packages.Where(p => p.IsLatest) :
+                                       packages.Where(p => p.IsLatestStable);
         }
 
         public IEnumerable<Package> FindPackagesByOwner(User user)
@@ -264,11 +261,12 @@ namespace NuGetGallery
                 Hash = cryptoSvc.GenerateHash(packageFileStream.ReadAllBytes()),
                 PackageFileSize = packageFileStream.Length,
                 Created = now,
+                Language = nugetPackage.Language,
                 LastUpdated = now,
                 Published = now,
                 Copyright = nugetPackage.Copyright,
                 IsPrerelease = !nugetPackage.IsReleaseVersion(),
-                Listed = true
+                Listed = true,
             };
 
             if (nugetPackage.IconUrl != null)
@@ -287,8 +285,29 @@ namespace NuGetGallery
             foreach (var author in nugetPackage.Authors)
                 package.Authors.Add(new PackageAuthor { Name = author });
 
-            foreach (var dependency in nugetPackage.Dependencies)
-                package.Dependencies.Add(new PackageDependency { Id = dependency.Id, VersionSpec = dependency.VersionSpec.ToStringSafe() });
+            var supportedFrameworks = GetSupportedFrameworks(nugetPackage).Select(fn => fn.ToShortNameOrNull()).ToArray();
+            if (!supportedFrameworks.AnySafe(sf => sf == null))
+                foreach (var supportedFramework in supportedFrameworks)
+                    package.SupportedFrameworks.Add(new PackageFramework { TargetFramework = supportedFramework });
+
+            foreach (var dependencySet in nugetPackage.DependencySets)
+            {
+                if (dependencySet.Dependencies.Count == 0)
+                    package.Dependencies.Add(new PackageDependency
+                    {
+                        Id = null,
+                        VersionSpec = null,
+                        TargetFramework = dependencySet.TargetFramework.ToShortNameOrNull()
+                    });
+                else
+                    foreach (var dependency in dependencySet.Dependencies.Select(d => new { d.Id, d.VersionSpec, dependencySet.TargetFramework }))
+                        package.Dependencies.Add(new PackageDependency
+                        {
+                            Id = dependency.Id,
+                            VersionSpec = dependency.VersionSpec == null ? null : dependency.VersionSpec.ToString(),
+                            TargetFramework = dependency.TargetFramework.ToShortNameOrNull()
+                        });
+            }
 
             package.FlattenedAuthors = package.Authors.Flatten();
             package.FlattenedDependencies = package.Dependencies.Flatten();
@@ -296,16 +315,20 @@ namespace NuGetGallery
             return package;
         }
 
+        public virtual IEnumerable<FrameworkName> GetSupportedFrameworks(IPackage package)
+        {
+            return package.GetSupportedFrameworks();
+        }
+
         static void ValidateNuGetPackage(IPackage nugetPackage)
         {
+            // TODO: Change this to use DataAnnotations
             if (nugetPackage.Id.Length > 128)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Id", "128");
             if (nugetPackage.Authors != null && String.Join(",", nugetPackage.Authors.ToArray()).Length > 4000)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Authors", "4000");
             if (nugetPackage.Copyright != null && nugetPackage.Copyright.Length > 4000)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Copyright", "4000");
-            if (nugetPackage.Dependencies != null && nugetPackage.Dependencies.Flatten().Length > 4000)
-                throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Dependencies", "4000");
             if (nugetPackage.Description != null && nugetPackage.Description.Length > 4000)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Description", "4000");
             if (nugetPackage.IconUrl != null && nugetPackage.IconUrl.ToString().Length > 4000)
@@ -314,12 +337,38 @@ namespace NuGetGallery
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "LicenseUrl", "4000");
             if (nugetPackage.ProjectUrl != null && nugetPackage.ProjectUrl.ToString().Length > 4000)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "ProjectUrl", "4000");
-            if (nugetPackage.Summary != null && nugetPackage.Summary.ToString().Length > 4000)
+            if (nugetPackage.Summary != null && nugetPackage.Summary.Length > 4000)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Summary", "4000");
             if (nugetPackage.Tags != null && nugetPackage.Tags.ToString().Length > 4000)
                 throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Tags", "4000");
-            if (nugetPackage.Title != null && nugetPackage.Title.ToString().Length > 4000)
-                throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Title", "4000");
+            if (nugetPackage.Title != null && nugetPackage.Title.Length > 256)
+                throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Title", "256");
+
+            if (nugetPackage.Version != null && nugetPackage.Version.ToString().Length > 64)
+            {
+                throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Version", "64");
+            }
+
+            if (nugetPackage.Language != null && nugetPackage.Language.Length > 20)
+            {
+                throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Language", "20");
+            }
+
+            foreach (var dependency in nugetPackage.DependencySets.SelectMany(s => s.Dependencies))
+            {
+                if (dependency.Id != null && dependency.Id.Length > 128)
+                {
+                    throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Dependency.Id", "128");
+                }
+
+                if (dependency.VersionSpec != null && dependency.VersionSpec.ToString().Length > 256)
+                {
+                    throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Dependency.VersionSpec", "256");
+                }
+            }
+
+            if (nugetPackage.DependencySets != null && nugetPackage.DependencySets.Flatten().Length > Int16.MaxValue)
+                throw new EntityException(Strings.NuGetPackagePropertyTooLong, "Dependencies", Int16.MaxValue);
         }
 
         private static void UpdateIsLatest(PackageRegistration packageRegistration)
@@ -329,12 +378,12 @@ namespace NuGetGallery
                 return;
             }
 
-            // TODO: improve setting the latest bit; this is horrible. Trigger maybe?
-            // NOTE: EF is suprisingly smart about doing this. It doesn't issue queries for the vast majority of packages that did not have either flags changed.
-            foreach (var pv in packageRegistration.Packages)
+            // TODO: improve setting the latest bit; this is horrible. Trigger maybe? 
+            foreach (var pv in packageRegistration.Packages.Where(p => p.IsLatest || p.IsLatestStable))
             {
                 pv.IsLatest = false;
                 pv.IsLatestStable = false;
+                pv.LastUpdated = DateTime.UtcNow;
             }
 
             // If the last listed package was just unlisted, then we won't find another one

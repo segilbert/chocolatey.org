@@ -1,8 +1,11 @@
-﻿namespace NuGetGallery
+﻿using System;
+namespace NuGetGallery
 {
     public class PackageIndexEntity
     {
         public int Key { get; set; }
+
+        public int PackageRegistrationKey { get; set; }
 
         public string Id { get; set; }
 
@@ -16,6 +19,10 @@
 
         public int DownloadCount { get; set; }
 
-        public int? LatestKey { get; set; }
+        public bool IsLatest { get; set; }
+
+        public bool IsLatestStable { get; set; }
+
+        public DateTime Published { get; set; }
     }
 }

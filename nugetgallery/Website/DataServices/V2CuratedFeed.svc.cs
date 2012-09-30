@@ -10,6 +10,7 @@ using System.Web.Routing;
 
 namespace NuGetGallery
 {
+    // TODO : Have V2CuratedFeed derive from V2Feed
     public class V2CuratedFeed : FeedServiceBase<V2FeedPackage>
     {
         private const int FeedVersion = 2;
@@ -32,6 +33,11 @@ namespace NuGetGallery
             {
                 Packages = packages.ToV2FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()))
             };
+        }
+
+        public static void InitializeService(DataServiceConfiguration config)
+        {
+            InitializeServiceBase(config);
         }
 
         [WebGet]
@@ -78,7 +84,7 @@ namespace NuGetGallery
 
         private string GetCuratedFeedName()
         {
-            var curatedFeedName = HttpContext.Current.Request.QueryString["name"];
+            var curatedFeedName = HttpContext.Request.QueryString["name"];
 
             var curatedFeed = Entities.CuratedFeeds.SingleOrDefault(cf => cf.Name == curatedFeedName);
             if (curatedFeed == null)
@@ -91,10 +97,14 @@ namespace NuGetGallery
         {
             var curatedFeedName = GetCuratedFeedName();
 
-            return Entities.CuratedFeeds
-                .Where(cf => cf.Name == curatedFeedName)
-                .Include(cf => cf.Packages.Select(cp => cp.PackageRegistration.Packages))
-                .SelectMany(cf => cf.Packages.SelectMany(cp => cp.PackageRegistration.Packages.Select(p => p)));
+            var packages = Entities.CuratedFeeds
+                                    .Where(cf => cf.Name == curatedFeedName)
+                                    .Include(cf => cf.Packages.Select(cp => cp.PackageRegistration.Packages))
+                                    .SelectMany(cf => cf.Packages.SelectMany(cp => cp.PackageRegistration.Packages.Select(p => p)));
+
+            // The curated feeds table has duplicate entries for feed, package registration pairs. Consequently
+            // we have to apply a distinct on the results.
+            return packages.Distinct();
         }
 
         protected override void OnStartProcessingRequest(ProcessRequestArgs args)
@@ -120,8 +130,7 @@ namespace NuGetGallery
            DataServiceOperationContext operationContext)
         {
             var package = (V2FeedPackage)entity;
-            var httpContext = new HttpContextWrapper(HttpContext.Current);
-            var urlHelper = new UrlHelper(new RequestContext(httpContext, new RouteData()));
+            var urlHelper = new UrlHelper(new RequestContext(HttpContext, new RouteData()));
 
             string url = urlHelper.PackageDownload(FeedVersion, package.Id, package.Version);
 

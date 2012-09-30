@@ -9,14 +9,17 @@ namespace NuGetGallery
 {
     public class CloudBlobFileStorageService : IFileStorageService
     {
-        ICloudBlobClient client;
-        IDictionary<string, ICloudBlobContainer> containers = new Dictionary<string, ICloudBlobContainer>();
+        private readonly ICloudBlobClient client;
+        private readonly IConfiguration configuration;
+        private readonly IDictionary<string, ICloudBlobContainer> containers = new Dictionary<string, ICloudBlobContainer>();
 
-        public CloudBlobFileStorageService(ICloudBlobClient client)
+        public CloudBlobFileStorageService(ICloudBlobClient client, IConfiguration configuration)
         {
             this.client = client;
+            this.configuration = configuration;
 
             PrepareContainer(Constants.PackagesFolderName, isPublic: true);
+            PrepareContainer(Constants.DownloadsFolderName, isPublic: true);
             PrepareContainer(Constants.UploadsFolderName, isPublic: false);
         }
 
@@ -26,7 +29,9 @@ namespace NuGetGallery
         {
             var container = GetContainer(folderName);
             var blob = container.GetBlobReference(fileName);
-            return new RedirectResult(blob.Uri.ToString(), false);
+
+            var redirectUri = GetRedirectUri(blob.Uri);
+            return new RedirectResult(redirectUri.OriginalString, false);
         }
 
         public void DeleteFile(
@@ -36,6 +41,16 @@ namespace NuGetGallery
             var container = GetContainer(folderName);
             var blob = container.GetBlobReference(fileName);
             blob.DeleteIfExists();
+        }
+
+        public bool FileExists(
+            string folderName,
+            string fileName)
+        {
+            
+            var container = GetContainer(folderName);
+            var blob = container.GetBlobReference(fileName);
+            return blob.Exists();
         }
 
         ICloudBlobContainer GetContainer(string folderName)
@@ -50,6 +65,8 @@ namespace NuGetGallery
                 case Constants.PackagesFolderName:
                 case Constants.UploadsFolderName:
                     return Constants.PackageContentType;
+                case Constants.DownloadsFolderName:
+                    return Constants.OctetStreamContentType;
                 default:
                     throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "The folder name {0} is not supported.", folderName));
             }
@@ -110,6 +127,20 @@ namespace NuGetGallery
             blob.UploadFromStream(packageFile);
             blob.Properties.ContentType = GetContentType(folderName);
             blob.SetProperties();
+        }
+
+        private Uri GetRedirectUri(Uri blobUri)
+        {
+            if (!String.IsNullOrEmpty(configuration.AzureCdnHost))
+            {
+                // If a Cdn is specified, convert the blob url to an Azure Cdn url.
+                UriBuilder builder = new UriBuilder(blobUri.Scheme, configuration.AzureCdnHost);
+                builder.Path = blobUri.AbsolutePath;
+                builder.Query = blobUri.Query;
+
+                return builder.Uri;
+            }
+            return blobUri;
         }
     }
 }

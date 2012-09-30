@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using OData.Linq;
+using QueryInterceptor;
 
 namespace NuGetGallery
 {
@@ -13,8 +14,8 @@ namespace NuGetGallery
         {
             siteRoot = EnsureTrailingSlash(siteRoot);
             return packages
-                     .WithoutNullPropagation()
                      .Include(p => p.PackageRegistration)
+                     .WithoutNullPropagation()
                      .Select(p => new V1FeedPackage
                      {
                          Id = p.PackageRegistration.Id,
@@ -29,6 +30,7 @@ namespace NuGetGallery
                          GalleryDetailsUrl = siteRoot + "packages/" + p.PackageRegistration.Id + "/" + p.Version,
                          IconUrl = p.IconUrl,
                          IsLatestVersion = p.IsLatestStable,
+                         Language = p.Language,
                          LastUpdated = p.LastUpdated,
                          LicenseUrl = p.LicenseUrl,
                          PackageHash = p.Hash,
@@ -51,8 +53,8 @@ namespace NuGetGallery
         {
             siteRoot = EnsureTrailingSlash(siteRoot);
             return packages
-                     .WithoutNullPropagation()
                      .Include(p => p.PackageRegistration)
+                     .WithoutNullPropagation()
                      .Select(p => new V2FeedPackage
                      {
                          Id = p.PackageRegistration.Id,
@@ -70,7 +72,7 @@ namespace NuGetGallery
                          IsPrerelease = p.IsPrerelease,
                          LastUpdated = p.LastUpdated,
                          LicenseUrl = p.LicenseUrl,
-                         Language = null,
+                         Language = p.Language,
                          PackageHash = p.Hash,
                          PackageHashAlgorithm = p.HashAlgorithm,
                          PackageSize = p.PackageFileSize,
@@ -84,6 +86,11 @@ namespace NuGetGallery
                          Title = p.Title,
                          VersionDownloadCount = p.DownloadCount
                      });
+        }
+
+        internal static IQueryable<TVal> WithoutVersionSort<TVal>(this IQueryable<TVal> feedQuery)
+        {
+            return feedQuery.InterceptWith(new ODataRemoveVersionSorter());
         }
 
         private static string EnsureTrailingSlash(string siteRoot)

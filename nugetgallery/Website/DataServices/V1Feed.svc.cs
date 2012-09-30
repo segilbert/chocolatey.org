@@ -23,12 +23,18 @@ namespace NuGetGallery
 
         }
 
+        public static void InitializeService(DataServiceConfiguration config)
+        {
+            InitializeServiceBase(config);
+        }
+
         protected override FeedContext<V1FeedPackage> CreateDataSource()
         {
             return new FeedContext<V1FeedPackage>
             {
                 Packages = PackageRepo.GetAll()
                                       .Where(p => !p.IsPrerelease)
+                                      .WithoutVersionSort()
                                       .ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()))
             };
         }
@@ -38,8 +44,7 @@ namespace NuGetGallery
            DataServiceOperationContext operationContext)
         {
             var package = (V1FeedPackage)entity;
-            var httpContext = new HttpContextWrapper(HttpContext.Current);
-            var urlHelper = new UrlHelper(new RequestContext(httpContext, new RouteData()));
+            var urlHelper = new UrlHelper(new RequestContext(HttpContext, new RouteData()));
 
             string url = urlHelper.PackageDownload(FeedVersion, package.Id, package.Version);
 
@@ -57,15 +62,14 @@ namespace NuGetGallery
         [WebGet]
         public IQueryable<V1FeedPackage> Search(string searchTerm, string targetFramework)
         {
-            // Only allow listed stable releases to be returned when searching the v1 feed.
-            var packages = PackageRepo.GetAll().Where(p => !p.IsPrerelease && p.Listed);
-
-            if (String.IsNullOrEmpty(searchTerm))
-            {
-                return packages.ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
-            }
-            return SearchService.Search(packages, searchTerm)
-                                .ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
+            var packages = PackageRepo.GetAll()
+                                      .Include(p => p.PackageRegistration)
+                                      .Include(p => p.PackageRegistration.Owners)
+                                      .Where(p => p.Listed && !p.IsPrerelease);
+            
+            // For v1 feed, only allow stable package versions.
+            packages = SearchCore(packages, searchTerm, targetFramework, includePrerelease: false);
+            return packages.ToV1FeedPackageQuery(Configuration.GetSiteRoot(UseHttps()));
         }
     }
 }

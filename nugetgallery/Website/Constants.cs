@@ -10,17 +10,24 @@ namespace NuGetGallery
         public const int DefaultPasswordResetTokenExpirationHours = 24;
         public const int MaxEmailSubjectLength = 255;
         public const string PackageContentType = "application/zip";
+        public const string OctetStreamContentType = "application/octet-stream";
         public const string NuGetPackageFileExtension = ".nupkg";
         public const string PackageFileDownloadUriTemplate = "packages/{0}/{1}/download";
         public const string PackageFileSavePathTemplate = "{0}.{1}{2}";
+        
         public const string PackagesFolderName = "packages";
+        public const string DownloadsFolderName = "downloads";
+
         public const string PopularitySortOrder = "package-download-count";
         public const string RecentSortOrder = "package-created";
         public const string RelevanceSortOrder = "relevance";
+        
         public const string Sha1HashAlgorithmId = "SHA1";
         public const string Sha512HashAlgorithmId = "SHA512";
         public const string PBKDF2HashAlgorithmId = "PBKDF2";
+        
         public const string UploadFileNameTemplate = "{0}{1}";
         public const string UploadsFolderName = "uploads";
+        public const string NuGetCommandLinePackageId = "NuGet.CommandLine";
     }
 }

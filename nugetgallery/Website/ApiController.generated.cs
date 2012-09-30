@@ -61,6 +61,16 @@ namespace NuGetGallery {
         public System.Web.Mvc.ActionResult PublishPackage() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.PublishPackage);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult GetPackageIds() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.GetPackageIds);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult GetPackageVersions() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.GetPackageVersions);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ApiController Actions { get { return MVC.Api; } }
@@ -75,11 +85,14 @@ namespace NuGetGallery {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string GetPackage = "GetPackageApi";
+            public readonly string GetNuGetExe = "GetNuGetExeApi";
             public readonly string VerifyPackageKey = "VerifyPackageKeyApi";
             public readonly string CreatePackagePut = "PushPackageApi";
             public readonly string CreatePackagePost = "PushPackageApi";
             public readonly string DeletePackage = "DeletePackageApi";
             public readonly string PublishPackage = "PublishPackageApi";
+            public readonly string GetPackageIds = "PackageIDs";
+            public readonly string GetPackageVersions = "PackageVersions";
         }
 
 
@@ -99,6 +112,11 @@ namespace NuGetGallery {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.GetPackage);
             callInfo.RouteValueDictionary.Add("id", id);
             callInfo.RouteValueDictionary.Add("version", version);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult GetNuGetExe() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.GetNuGetExe);
             return callInfo;
         }
 
@@ -135,6 +153,20 @@ namespace NuGetGallery {
             callInfo.RouteValueDictionary.Add("apiKey", apiKey);
             callInfo.RouteValueDictionary.Add("id", id);
             callInfo.RouteValueDictionary.Add("version", version);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult GetPackageIds(string partialId, bool? includePrerelease) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.GetPackageIds);
+            callInfo.RouteValueDictionary.Add("partialId", partialId);
+            callInfo.RouteValueDictionary.Add("includePrerelease", includePrerelease);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult GetPackageVersions(string id, bool? includePrerelease) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.GetPackageVersions);
+            callInfo.RouteValueDictionary.Add("id", id);
+            callInfo.RouteValueDictionary.Add("includePrerelease", includePrerelease);
             return callInfo;
         }
 

@@ -25,11 +25,12 @@ using T4MVC;
 public static class MVC {
     public static NuGetGallery.ApiController Api = new NuGetGallery.T4MVC_ApiController();
     public static NuGetGallery.AuthenticationController Authentication = new NuGetGallery.T4MVC_AuthenticationController();
+    public static NuGetGallery.CuratedFeedsController CuratedFeeds = new NuGetGallery.T4MVC_CuratedFeedsController();
+    public static NuGetGallery.CuratedPackagesController CuratedPackages = new NuGetGallery.T4MVC_CuratedPackagesController();
     public static NuGetGallery.JsonApiController JsonApi = new NuGetGallery.T4MVC_JsonApiController();
     public static NuGetGallery.PackagesController Packages = new NuGetGallery.T4MVC_PackagesController();
     public static NuGetGallery.PagesController Pages = new NuGetGallery.T4MVC_PagesController();
     public static NuGetGallery.UsersController Users = new NuGetGallery.T4MVC_UsersController();
-    public static T4MVC.HelpersController Helpers = new T4MVC.HelpersController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -301,6 +302,16 @@ public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResul
     public string Action { get; set; }
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+public class T4MVC_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult {
+    public T4MVC_JsonResult(string area, string controller, string action): base()  {
+        this.InitMVCT4Result(area, controller, action);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
 
 
 
@@ -325,6 +336,11 @@ namespace Links {
                       
         public static readonly string modernizr_2_0_6_development_only_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.0.6-development-only.min.js") ? Url("modernizr-2.0.6-development-only.min.js") : Url("modernizr-2.0.6-development-only.js");
                       
+        public static readonly string stats_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/stats.min.js") ? Url("stats.min.js") : Url("stats.js");
+                      
+        public static readonly string ZeroClipboard_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ZeroClipboard.min.js") ? Url("ZeroClipboard.min.js") : Url("ZeroClipboard.js");
+                      
+        public static readonly string ZeroClipboard_swf = Url("ZeroClipboard.swf");
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -338,6 +354,7 @@ namespace Links {
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string changePassword_png = Url("changePassword.png");
+            public static readonly string copy_png = Url("copy.png");
             public static readonly string download_png = Url("download.png");
             public static readonly string editIcon_png = Url("editIcon.png");
             public static readonly string editProfile_png = Url("editProfile.png");
