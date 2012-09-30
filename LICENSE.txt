@@ -29,4 +29,4 @@ The user content pertaining strictly to that user is remains the property of the
 Commercial Licensing
 ===================================================================
 Chocolatey.org is also offered under commercial licenses.
-You can learn more about this option by contacting FCS at http://ferventcoder.com
+You can learn more about this option by contacting RDS at http://ferventcoder.com
