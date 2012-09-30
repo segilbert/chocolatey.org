@@ -1300,12 +1300,12 @@
     <Content Include="..\..\nugetgallery\Website\DynamicData\Site.css">
       <Link>DynamicData\Site.css</Link>
     </Content>
-    <Content Include="..\..\nugetgallery\Website\Infrastructure\AggregateStatistics.sql">
+    <EmbeddedResource Include="..\..\nugetgallery\Website\Infrastructure\AggregateStatistics.sql">
       <Link>Infrastructure\AggregateStatistics.sql</Link>
-    </Content>
-    <Content Include="..\..\nugetgallery\Website\Infrastructure\Elmah.SqlServer.sql">
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\nugetgallery\Website\Infrastructure\Elmah.SqlServer.sql">
       <Link>Infrastructure\Elmah.SqlServer.sql</Link>
-    </Content>
+    </EmbeddedResource>
     <Content Include="Content\chocolatey.css" />
     <Content Include="Content\Images\AH_Logo_vertical.png" />
     <Content Include="Content\Images\appharbor-logo.png" />
