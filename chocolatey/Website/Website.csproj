@@ -1373,7 +1373,7 @@
     </Content>
     <Content Include="packages.config" />
     <Content Include="App_Code\ViewHelpers.cshtml" />
-    <Content Include="_app_offline.htm" />
+    <Content Include="app_offline.htm" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
