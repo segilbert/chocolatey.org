@@ -6,6 +6,7 @@ obj
 App_Data
 *.results.xml
 /packages
+/chocolatey/Website/RequestReduce
 _AzurePackage
 *.sln.docstates
 *.bak
