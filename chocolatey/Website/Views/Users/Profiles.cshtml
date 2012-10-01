@@ -21,7 +21,21 @@
 }
 
 <h1>@Model.Username's Profile</h1>
-
+<h2>Sites</h2>
+ 
+<ul id="profileResults">
+  @foreach (var siteProfile in Model.UserProfiles)
+  {
+    <li>
+        <section class="package">
+           @* <div class="side"></div>*@
+            <div class="main">
+                <h2><a href="@siteProfile.Url" target="_blank">@siteProfile.Name</a></h2>
+            </div>
+        </section>
+    </li>
+  }
+</ul>
 <h2>Packages</h2>
 <ul id="searchResults">
     @foreach (var package in Model.Packages) {

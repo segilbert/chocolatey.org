@@ -226,6 +226,15 @@ namespace NuGetGallery
             Bind<IPackageVersionsQuery>()
                 .To<PackageVersionsQuery>()
                 .InRequestScope();
+
+
+            BindChocolateySpecific();
+        }
+
+        private void BindChocolateySpecific()
+        {
+            Bind<IUserSiteProfilesService>().To<UserSiteProfilesService>().InRequestScope();
+            Bind<IEntityRepository<UserSiteProfile>>().To<EntityRepository<UserSiteProfile>>().InRequestScope();
         }
     }
 }

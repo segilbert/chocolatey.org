@@ -638,9 +638,6 @@
     <Compile Include="..\..\nugetgallery\Website\ViewModels\DependencySetsViewModel.cs">
       <Link>ViewModels\DependencySetsViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\ViewModels\EditProfileViewModel.cs">
-      <Link>ViewModels\EditProfileViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\ViewModels\EmailConfirmationModel.cs">
       <Link>ViewModels\EmailConfirmationModel.cs</Link>
     </Compile>
@@ -665,9 +662,6 @@
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\Controllers\PackagesController.cs">
       <Link>Controllers\PackagesController.cs</Link>
-    </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Controllers\UsersController.cs">
-      <Link>Controllers\UsersController.cs</Link>
     </Compile>
     <Compile Include="..\..\nugetgallery\Website\DynamicData\Content\GridViewPager.ascx.cs">
       <Link>DynamicData\Content\GridViewPager.ascx.cs</Link>
@@ -1074,9 +1068,6 @@
     <Compile Include="..\..\nugetgallery\Website\Entities\EmailMessage.cs">
       <Link>Entities\EmailMessage.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Entities\EntitiesContext.cs">
-      <Link>Entities\EntitiesContext.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Entities\PackageRegistration.cs">
       <Link>Entities\PackageRegistration.cs</Link>
     </Compile>
@@ -1152,9 +1143,6 @@
     <Compile Include="..\..\nugetgallery\Website\ViewModels\VerifyPackageViewModel.cs">
       <Link>ViewModels\VerifyPackageViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\ViewModels\UserProfileModel.cs">
-      <Link>ViewModels\UserProfileModel.cs</Link>
-    </Compile>
     <Compile Include="App_Start\AppActivator.cs" />
     <Compile Include="App_Start\Configuration.cs" />
     <Compile Include="App_Start\ContainerBindings.cs" />
@@ -1163,6 +1151,13 @@
     <Compile Include="App_Start\Routes.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\RssController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Entities\EntitiesContext.cs" />
+    <Compile Include="Entities\UserSiteProfile.cs" />
+    <Compile Include="Migrations\201210010306298_AddUserSiteProfiles.cs" />
+    <Compile Include="Migrations\201210010306298_AddUserSiteProfiles.Designer.cs">
+      <DependentUpon>201210010306298_AddUserSiteProfiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MigrationsConfiguration.cs" />
     <Compile Include="MvcOverrides\CustomMvcHandler.cs" />
     <Compile Include="MvcOverrides\CustomMvcRouteHandler.cs" />
@@ -1173,8 +1168,13 @@
     <Compile Include="Services\AmazonS3ClientWrapper.cs" />
     <Compile Include="Services\AmazonS3FileStorageService.cs" />
     <Compile Include="Services\IAmazonS3Client.cs" />
+    <Compile Include="Services\IUserSiteProfilesService.cs" />
     <Compile Include="Services\RssActionResult.cs" />
+    <Compile Include="Services\UserSiteProfilesService.cs" />
     <Compile Include="UrlExtensions.cs" />
+    <Compile Include="ViewModels\EditProfileViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileModel.cs" />
+    <Compile Include="ViewModels\UserSiteProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\nugetgallery\Website\DataServices\V1Feed.svc">

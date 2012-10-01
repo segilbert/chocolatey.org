@@ -87,3 +87,9 @@
         float:right;
         width: 450px;
     }
+    
+#profileResults {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

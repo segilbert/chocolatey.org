@@ -42,6 +42,49 @@
             </p>
 
         </div>
+        
+        <div class="form-field">
+            @Html.LabelFor(m => m.TwitterUserName)
+            @Html.EditorFor(m => m.TwitterUserName)
+            @Html.ValidationMessageFor(m => m.TwitterUserName)
+            <span class="field-hint-message">Your twitter handle</span>
+        </div>
+        
+        <div class="form-field">
+            @Html.LabelFor(m => m.GithubUserName)
+            @Html.EditorFor(m => m.GithubUserName)
+            @Html.ValidationMessageFor(m => m.GithubUserName)
+            <span class="field-hint-message">Your github username</span>
+        </div>    
+            
+        <div class="form-field">
+            @Html.LabelFor(m => m.CodeplexUserName)
+            @Html.EditorFor(m => m.CodeplexUserName)
+            @Html.ValidationMessageFor(m => m.CodeplexUserName)
+            <span class="field-hint-message">Your codeplex username</span>
+        </div>
+
+        <div class="form-field">
+            @Html.LabelFor(m => m.StackExchangeUrl)
+            @Html.EditorFor(m => m.StackExchangeUrl)
+            @Html.ValidationMessageFor(m => m.StackExchangeUrl)
+            <span class="field-hint-message">The full Url to your stack exchange profile. This is not the same as stackoverflow.</span>
+        </div>
+
+        <div class="form-field">
+            @Html.LabelFor(m => m.HomepageUrl)
+            @Html.EditorFor(m => m.HomepageUrl)
+            @Html.ValidationMessageFor(m => m.HomepageUrl)
+            <span class="field-hint-message">The full Url to your homepage</span>
+        </div> 
+        
+        <div class="form-field">
+            @Html.LabelFor(m => m.BlogUrl)
+            @Html.EditorFor(m => m.BlogUrl)
+            @Html.ValidationMessageFor(m => m.BlogUrl)
+            <span class="field-hint-message">The full Url to your blog</span>
+        </div>
+
 
         <img src="@Url.Content("~/content/images/required.png")" alt="Blue border on left means required." />
 
