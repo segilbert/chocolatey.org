@@ -52,7 +52,7 @@ namespace NuGetGallery
         private static void AppPostStart()
         {
             Routes.RegisterRoutes(RouteTable.Routes);
-            SetCustomRouteHandler();
+            //SetCustomRouteHandler();
 
             GlobalFilters.Filters.Add(new ElmahHandleErrorAttribute());
             ValueProviderFactories.Factories.Add(new HttpHeaderValueProviderFactory());
