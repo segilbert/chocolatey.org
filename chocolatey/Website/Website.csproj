@@ -126,9 +126,6 @@
     <Reference Include="PoliteCaptcha, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PoliteCaptcha.0.3.0.0\lib\net40\PoliteCaptcha.dll</HintPath>
     </Reference>
-    <Reference Include="Premotion.AspNet.AppHarbor.Integration">
-      <HintPath>..\..\packages\Premotion.AspNet.AppHarbor.Integration.0.5.0\lib\net40\Premotion.AspNet.AppHarbor.Integration.dll</HintPath>
-    </Reference>
     <Reference Include="QueryInterceptor">
       <HintPath>..\..\packages\QueryInterceptor.0.1.4237.2400\lib\net40\QueryInterceptor.dll</HintPath>
     </Reference>
@@ -1141,6 +1138,7 @@
       <Link>ViewModels\VerifyPackageViewModel.cs</Link>
     </Compile>
     <Compile Include="App_Start\AppActivator.cs" />
+    <Compile Include="App_Start\AppHarborModule.cs" />
     <Compile Include="App_Start\Configuration.cs" />
     <Compile Include="App_Start\ContainerBindings.cs" />
     <Compile Include="App_Start\IConfiguration.cs" />
