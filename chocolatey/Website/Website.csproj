@@ -1086,12 +1086,6 @@
     <Compile Include="..\..\nugetgallery\Website\RequestModels\DisplayPackageRequest.cs">
       <Link>RequestModels\DisplayPackageRequest.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Strings.Designer.cs">
-      <Link>Strings.Designer.cs</Link>
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Entities\User.cs">
       <Link>Entities\User.cs</Link>
     </Compile>
@@ -1178,6 +1172,11 @@
     <Compile Include="Services\IUserSiteProfilesService.cs" />
     <Compile Include="Services\RssActionResult.cs" />
     <Compile Include="Services\UserSiteProfilesService.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="UrlExtensions.cs" />
     <Compile Include="ViewModels\EditProfileViewModel.cs" />
     <Compile Include="ViewModels\UserProfileModel.cs" />
@@ -1394,8 +1393,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\nugetgallery\Website\Strings.resx">
-      <Link>Strings.resx</Link>
+    <EmbeddedResource Include="Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
