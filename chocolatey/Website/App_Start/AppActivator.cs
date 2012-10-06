@@ -113,8 +113,7 @@ namespace NuGetGallery
         {
             var copy = ViewEngines.Engines.ToList();
             ViewEngines.Engines.Clear();
-            foreach (var item in copy)
-                ViewEngines.Engines.Add(new ProfilingViewEngine(item));
+            foreach (var item in copy) ViewEngines.Engines.Add(new ProfilingViewEngine(item));
         }
 
         private static void NinjectPreStart()
