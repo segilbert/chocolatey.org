@@ -126,6 +126,9 @@
     <Reference Include="PoliteCaptcha, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PoliteCaptcha.0.3.0.0\lib\net40\PoliteCaptcha.dll</HintPath>
     </Reference>
+    <Reference Include="Premotion.AspNet.AppHarbor.Integration">
+      <HintPath>..\..\packages\Premotion.AspNet.AppHarbor.Integration.0.5.0\lib\net40\Premotion.AspNet.AppHarbor.Integration.dll</HintPath>
+    </Reference>
     <Reference Include="QueryInterceptor">
       <HintPath>..\..\packages\QueryInterceptor.0.1.4237.2400\lib\net40\QueryInterceptor.dll</HintPath>
     </Reference>
@@ -1158,6 +1161,10 @@
     <Compile Include="Migrations\201210010306298_AddUserSiteProfiles.Designer.cs">
       <DependentUpon>201210010306298_AddUserSiteProfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201210061242099_SiteProfileImage.cs" />
+    <Compile Include="Migrations\201210061242099_SiteProfileImage.Designer.cs">
+      <DependentUpon>201210061242099_SiteProfileImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MigrationsConfiguration.cs" />
     <Compile Include="MvcOverrides\CustomMvcHandler.cs" />
     <Compile Include="MvcOverrides\CustomMvcRouteHandler.cs" />
@@ -1313,12 +1320,14 @@
     <Content Include="Content\Images\AH_Logo_vertical.png" />
     <Content Include="Content\Images\appharbor-logo.png" />
     <Content Include="Content\Images\changePassword.png" />
+    <Content Include="Content\Images\codeplex.jpg" />
     <Content Include="Content\Images\contribGraphic.png" />
     <Content Include="Content\Images\copy.png" />
     <Content Include="Content\Images\download.png" />
     <Content Include="Content\Images\editIcon.png" />
     <Content Include="Content\Images\editProfile.png" />
     <Content Include="Content\Images\errorPage.png" />
+    <Content Include="Content\Images\github.jpg" />
     <Content Include="Content\Images\greenArrow.png" />
     <Content Include="Content\Images\headerbackground.png" />
     <Content Include="Content\Images\hero.png" />
@@ -1329,6 +1338,7 @@
     <Content Include="Content\Images\mine.png" />
     <Content Include="Content\Images\navbackground.png" />
     <Content Include="Content\Images\newAccountGraphic.png" />
+    <Content Include="Content\Images\nothing-50x50.png" />
     <Content Include="Content\Images\nugetlogo.png" />
     <Content Include="Content\Images\nugetLogoFooter.png" />
     <Content Include="Content\Images\packageDefaultIcon-50x50.png" />
@@ -1341,7 +1351,9 @@
     <Content Include="Content\Images\required.png" />
     <Content Include="Content\Images\searchButton.png" />
     <Content Include="Content\Images\sendMessageGraphic.png" />
+    <Content Include="Content\Images\stackexchange.png" />
     <Content Include="Content\Images\trash.png" />
+    <Content Include="Content\Images\twitter.png" />
     <Content Include="Content\Images\uploadPackage.png" />
     <Content Include="Content\Images\userGraphic.png" />
     <Content Include="Content\Images\userIcon.png" />

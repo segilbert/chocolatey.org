@@ -56,6 +56,8 @@ namespace NuGetGallery
             var stackExchange = profiles.Where(x => x.Name == SiteProfileConstants.StackExchange).Select(p=>p.Url).FirstOrDefault();
             var homepage = profiles.Where(x => x.Name == SiteProfileConstants.Homepage).Select(p=>p.Url).FirstOrDefault();
             var blogUrl = profiles.Where(x => x.Name == SiteProfileConstants.Blog).Select(p => p.Url).FirstOrDefault();
+            var packagesRepo = profiles.Where(x => x.Name == SiteProfileConstants.PackagesRepository).Select(p => p.Url).FirstOrDefault();
+            var packagesRepoAuto = profiles.Where(x => x.Name == SiteProfileConstants.PackagesRepositoryAuto).Select(p => p.Url).FirstOrDefault();
 
             var model = new EditProfileViewModel
             {
@@ -67,7 +69,9 @@ namespace NuGetGallery
                 CodeplexUserName = codeplex, 
                 StackExchangeUrl = stackExchange, 
                 HomepageUrl = homepage, 
-                BlogUrl = blogUrl
+                BlogUrl = blogUrl,
+                PackagesRepository = packagesRepo,
+                PackagesRepositoryAuto = packagesRepoAuto
             };
             return View(model);
         }

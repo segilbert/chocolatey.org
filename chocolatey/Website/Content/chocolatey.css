@@ -93,3 +93,13 @@
     margin: 0;
     padding: 0;
 }
+
+section.package .profile {
+    float: left;
+    width: 70px;
+}
+
+    section.package .profile img {
+        height: 30px;
+        width: 30px;
+    }

@@ -38,7 +38,15 @@ namespace NuGetGallery
         
         [Display(Name = "Blog Url")]
         [StringLength(255)]
-        public string BlogUrl { get; set; }
+        public string BlogUrl { get; set; }      
+        
+        [Display(Name = "Chocolatey Packages Repository")]
+        [StringLength(255)]
+        public string PackagesRepository { get; set; }
+  
+        [Display(Name = "Chocolatey Automatic Packages Repository")]
+        [StringLength(255)]
+        public string PackagesRepositoryAuto { get; set; }
 
 
     }

@@ -44,6 +44,20 @@
         </div>
         
         <div class="form-field">
+            @Html.LabelFor(m => m.PackagesRepository)
+            @Html.EditorFor(m => m.PackagesRepository)
+            @Html.ValidationMessageFor(m => m.PackagesRepository)
+            <span class="field-hint-message">The full Url to your packages repository (this is where you keep what builds the packages)</span>
+        </div>
+        
+         <div class="form-field">
+            @Html.LabelFor(m => m.PackagesRepositoryAuto)
+            @Html.EditorFor(m => m.PackagesRepositoryAuto)
+            @Html.ValidationMessageFor(m => m.PackagesRepositoryAuto)
+            <span class="field-hint-message">The full Url to your automatic packages repository (this is a secondary repository you might have that uses Chocolatey Package Updater to build and push your packages automatically)</span>
+        </div>
+
+        <div class="form-field">
             @Html.LabelFor(m => m.TwitterUserName)
             @Html.EditorFor(m => m.TwitterUserName)
             @Html.ValidationMessageFor(m => m.TwitterUserName)

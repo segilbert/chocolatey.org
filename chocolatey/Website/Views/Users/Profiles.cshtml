@@ -28,6 +28,11 @@
   {
     <li>
         <section class="package">
+            <div class="profile">
+                <a href="@siteProfile.Url" target="_blank" title="View more about @Model.Username at @siteProfile.Name">
+                    <img src="@(!string.IsNullOrWhiteSpace(siteProfile.Image) ? siteProfile.Image : SiteProfileConstants.Images.nothing_50x50_png)" alt="@siteProfile.Name Logo" />
+                </a>
+            </div>
             <div class="main">
                 <h2><a href="@siteProfile.Url" target="_blank">@siteProfile.Name</a></h2>
             </div>
