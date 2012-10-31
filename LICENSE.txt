@@ -4,9 +4,8 @@ Copyright (C) 2011- Present RealDimensions Software, LLC ("RDS")
 Basically this boils down to this, if you are a business and want to use the software this pertains to internally, you need to get a commercial license to do so.
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as
-published by the Free Software Foundation, either version 3 of the
-License.
+it under the terms of the GNU Affero General Public License version 3 as
+published by the Free Software Foundation, subject to the additional terms and exceptions as noted in this license copy.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,11 +16,14 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ===================================================================
-Packages/User Content/Client License Exception
+Additional License Terms for Packages
 ===================================================================
-The chocolatey packages, known as files that end in "nupkg" (i.e. "packages")  that are included with the server will retain their licenses and be excluded from the reach of this license.
+The chocolatey packages, known as files that end in "nupkg" (i.e. "packages") that are shown, stored, and/or served from the server will retain their licenses and be excluded from the reach of this license with the exception that they must be made publicly available without fee or compensation of any sort.
 
-The clients that access the server, i.e. the chocolatey command line client, are also excluded from the reach of this license. 
+===================================================================
+User Content/Client License Exception
+===================================================================
+The clients that access the server, i.e. the chocolatey command line client, are excluded from the reach of this license. 
 
 The user content pertaining strictly to that user is remains the property of the user. When they put it on chocolatey.org, they are granting chocolatey.org use of that information. When they no longer want it there anymore, they are permitted to delete it.
 
