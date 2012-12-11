@@ -1452,6 +1452,7 @@
     <Content Include="Errors\_PageStart.cshtml" />
     <Content Include="Views\Packages\_PackageDependencies.cshtml" />
     <Content Include="Web.ForbiddenHandlers.config" />
+    <Content Include="Install.ps1" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
