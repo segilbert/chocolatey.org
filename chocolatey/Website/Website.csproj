@@ -657,9 +657,6 @@
     <Compile Include="..\..\nugetgallery\Website\Controllers\JsonApiController.cs">
       <Link>Controllers\JsonApiController.cs</Link>
     </Compile>
-    <Compile Include="..\..\nugetgallery\Website\Controllers\PagesController.cs">
-      <Link>Controllers\PagesController.cs</Link>
-    </Compile>
     <Compile Include="..\..\nugetgallery\Website\Controllers\PackagesController.cs">
       <Link>Controllers\PackagesController.cs</Link>
     </Compile>
@@ -1145,6 +1142,7 @@
     <Compile Include="App_Start\PackageStoreType.cs" />
     <Compile Include="App_Start\Routes.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Entities\EntitiesContext.cs" />
