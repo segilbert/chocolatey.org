@@ -61,10 +61,9 @@
         
         <div>
             <p>
-                <span id="key">@Model.ApiKey</span>
-                <img id="copyButton" alt="Copy To Clipboard" src="@Url.Content("~/Content/Images/copy.png")" />
+                <span id="key">@Model.ApiKey</span> 
+                <input type="button" id="copyButton" class="copy-button" title="Copy To Clipboard" />
             </p>
-            
 
             <fieldset class="form">
                 <legend>Generate New API Key</legend>
@@ -92,9 +91,10 @@ nuget.exe push MyPackage.1.0.nupkg -Source http://chocolatey.org/</pre>
 
 @section BottomScripts {
     <script type="text/javascript" src="@Url.Content("~/Scripts/ZeroClipboard.js")"></script>
-    <script>
-        $(function () {
-            $("#overlayWrapper").click(function () {
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $("#overlayWrapper").click(function() {
                 $("#overlayWrapper").fadeOut();
                 return false;
             });
@@ -104,6 +104,10 @@ nuget.exe push MyPackage.1.0.nupkg -Source http://chocolatey.org/</pre>
             clip.setText('@HttpUtility.JavaScriptStringEncode(Model.ApiKey.ToString())');
             clip.setHandCursor(true);
             clip.glue('copyButton');
+
+            $(window).resize(function() {
+                clip.reposition();
+            });
         });
     </script>
 }

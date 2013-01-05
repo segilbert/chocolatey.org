@@ -103,3 +103,10 @@ section.package .profile {
         height: 30px;
         width: 30px;
     }
+    
+.copy-button {
+    border:0;
+   width: 16px; 
+   height: 16px; 
+   background: url('../Content/Images/copy.png') no-repeat;
+}
