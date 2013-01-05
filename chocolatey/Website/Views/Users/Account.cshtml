@@ -11,7 +11,7 @@
         <li id="uploadPackage">
             <h2><a href="@Url.UploadPackage()">Upload Package</a></h2>
             <p>
-                Upload and publish your package for other NuGet users to download and enjoy. 
+                Upload and publish your package for other Chocolatey users to download and enjoy. 
                 You can upload multiple revisions of the same package, as long as the version 
                 is different.
             </p>
@@ -53,7 +53,7 @@
         Keep this a secret. You can always regenerate your key at any time (invalidating 
         previous keys) if your token is accidentally revealed. The 
         <a href="http://nuget.codeplex.com/">NuGet</a> command-line utility allows you to 
-        submit a NuGet package to the gallery, and you would pass you token like this:
+        submit a Chocolatey NuGet package to the gallery, and you would pass you token like this:
     </p>
     
     <div id="generateKey">
@@ -78,8 +78,9 @@
             <h2>Example usage:</h2>
             <p>
                 <pre>
-nuget.exe setApiKey @Model.ApiKey
-nuget.exe push MyPackage.1.0.nupkg</pre>
+nuget.exe setApiKey @Model.ApiKey -Source http://chocolatey.org/
+chocolatey push MyPackage.1.0.nupkg 
+nuget.exe push MyPackage.1.0.nupkg -Source http://chocolatey.org/</pre>
             </p>
         </div>
 
