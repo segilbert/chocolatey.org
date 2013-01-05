@@ -8,7 +8,7 @@
         <p>Chocolatey NuGet is a Machine Package Manager, somewhat like apt-get, but built with Windows in mind.</p>
         <h2>Easy Install!</h2>
         <p style="vertical-align:bottom;font-size:18px">
-        To install chocolatey now, open a command prompt and paste the text from the box below and press enter (minus the C:\&gt; of course ;)) 
+        To install chocolatey now, open a command prompt and paste the text from the box below and press enter. Click <input type="button" id="copyButton" class="copy-button" title="Copy To Clipboard" /> to copy the text below to clipboard.
         </p>
     </div>
     <img src="@Url.Content("~/content/images/hero.png")" alt="Chocolatey install of Git (cinst git)" />
@@ -54,10 +54,27 @@
 
 @section BottomScripts
 {
-    <script src="@Url.Content("~/Scripts/stats.js")"></script>
-    <script>
-    $(getStats);
+    <script type="text/javascript" src="@Url.Content("~/Scripts/stats.js")"></script>
+    <script type="text/javascript" >
+        $(getStats);
     </script>
+    
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ZeroClipboard.js")"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            ZeroClipboard.setMoviePath('@Url.Content("~/Scripts/ZeroClipboard.swf")');
+            var clip = new ZeroClipboard.Client();
+            clip.setText('@HttpUtility.JavaScriptStringEncode(@"@powershell -NoProfile -ExecutionPolicy unrestricted -Command ""iex ((new-object net.webclient).DownloadString('http://chocolatey.org/install.ps1'))"" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin")');
+            clip.setHandCursor(true);
+            clip.glue('copyButton');
+
+            $(window).resize(function () {
+                clip.reposition();
+            });
+        });
+    </script>
+
     <script type="text/javascript">        var switchTo5x = true;</script>
 
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
