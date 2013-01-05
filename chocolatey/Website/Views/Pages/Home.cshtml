@@ -65,7 +65,7 @@
         $(document).ready(function () {
             ZeroClipboard.setMoviePath('@Url.Content("~/Scripts/ZeroClipboard.swf")');
             var clip = new ZeroClipboard.Client();
-            clip.setText('@@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(\'http://chocolatey.org/install.ps1\'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin');
+            clip.setText('@@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(\'http://chocolatey.org/install.ps1\'))" && SET PATH=%PATH%;%systemdrive%\\chocolatey\\bin');
             clip.setHandCursor(true);
             clip.glue('copyButton');
 
